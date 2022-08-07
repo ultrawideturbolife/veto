@@ -73,21 +73,6 @@ abstract class BaseViewModel<E extends Object?> {
     _rebuild = null;
   }
 
-  /// Used to notify whether the [BaseViewModel] is busy.
-  ///
-  /// This method sets the [_isBusyNotifier] and thus the [isBusyListenable] and
-  /// [BaseViewModel.isBusy] to true.
-  void setBusy(bool isBusy) {
-    _isBusyNotifier.value = isBusy;
-    if (isBusy) {
-      if (!hasError) {
-        _stateNotifier.value = ViewModelState.isBusy;
-      }
-    } else {
-      _stateNotifier.value = ViewModelState.isInitialised;
-    }
-  }
-
   /// Used to notify whether the [BaseViewModel] has an error.
   ///
   /// This method sets the [_isBusyNotifier] and thus the [isBusyListenable] and
@@ -97,8 +82,40 @@ abstract class BaseViewModel<E extends Object?> {
     if (hasError) {
       _stateNotifier.value = ViewModelState.hasError;
     } else {
-      _stateNotifier.value =
-          isBusy ? ViewModelState.isBusy : ViewModelState.isInitialised;
+      _restoreViewModelState();
+    }
+  }
+
+  /// Used to notify whether the [BaseViewModel] is busy.
+  ///
+  /// This method sets the [_isBusyNotifier] and thus the [isBusyListenable] and
+  /// [BaseViewModel.isBusy] to true.
+  void setBusy(bool isBusy) {
+    _isBusyNotifier.value = isBusy;
+    if (isBusy) {
+      if (!_hasErrorNotifier.value || _isInitialisedNotifier.value) {
+        _stateNotifier.value = ViewModelState.isBusy;
+      }
+    } else {
+      _restoreViewModelState();
+    }
+  }
+
+  /// Used to restore the [ViewModelState] value of [_stateNotifier].
+  ///
+  /// Uses the [_hasErrorNotifier], [_isBusyNotifier] and [_isInitialisedNotifier] as backbone where
+  /// showing an error comes before showing busy and showing busy comes before showing initialised.
+  void _restoreViewModelState() {
+    if (hasError) {
+      _stateNotifier.value = ViewModelState.hasError;
+    } else if (isBusy) {
+      _stateNotifier.value = ViewModelState.isBusy;
+    } else {
+      if (isInitialised) {
+        _stateNotifier.value = ViewModelState.isInitialised;
+      } else {
+        _stateNotifier.value = ViewModelState.isInitialising;
+      }
     }
   }
 
