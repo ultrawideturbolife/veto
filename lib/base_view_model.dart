@@ -7,6 +7,10 @@ part 'view_model_builder.dart';
 
 /// Base view model class.
 abstract class BaseViewModel<E extends Object?> {
+
+  /// Holds arguments of type [E] provided by the [ViewModelBuilder._argumentBuilder].
+  late E? arguments;
+
   /// Callback that is used by [rebuild] to rebuild the widgets inside the parent [ViewModelBuilder].
   late Function(VoidCallback fn)? _rebuild;
 
@@ -58,7 +62,7 @@ abstract class BaseViewModel<E extends Object?> {
   /// This method is called in the [ViewModelBuilderState.initState] method and sets the
   /// [_isInitialisedNotifier] and thus the [isInitialisedListenable] and [isInitialised] to true.
   @mustCallSuper
-  initialise({E? arguments}) {
+  initialise() {
     _isInitialisedNotifier.value = true;
     _stateNotifier.value = ViewModelState.isInitialised;
   }
