@@ -36,10 +36,9 @@ class ViewModelBuilderState<T extends BaseViewModel>
     _viewModel = widget._viewModelBuilder()
       .._disposableBuildContext = DisposableBuildContext(this)
       .._mounted = (() => mounted)
-      .._rebuild = setState;
-    _viewModel.initialise(
-      arguments: widget._argumentBuilder?.call(),
-    );
+      .._rebuild = setState
+      ..arguments = widget._argumentBuilder?.call();
+    _viewModel.initialise();
     super.initState();
   }
 
