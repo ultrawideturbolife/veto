@@ -1,9 +1,16 @@
+# Veto
+
 # 📚 Veto
 
 > *A lightweight MVVM state management solution originally inspired by the [FilledStacks](https://www.filledstacks.com/) [stacked](https://pub.dev/packages/stacked) package.*
 >
 
-![https://media.giphy.com/media/lyxIb7MBfv14I/giphy.gif](https://media.giphy.com/media/lyxIb7MBfv14I/giphy.gif)
+![veto_example_project.png](veto_example_project.png)
+
+<aside>
+💡 The example project demonstrates every functionality of this package.
+
+</aside>
 
 # 🛠 How to use it?
 
@@ -18,7 +25,7 @@ class VetoViewModel extends BaseViewModel<String> {
   int counter = 0;
 
   @override
-  Future<void> initialise({arguments}) async {
+  Future<void> initialise() async {
     debugPrint('''[🐛] [DEBUG] [🌟] [VetoViewModel.initialise] [📞] I was initialised!''');
     super.initialise();
   }

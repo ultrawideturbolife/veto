@@ -39,17 +39,11 @@ class SecondVetoView extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // const SizedBox(height: 32), // TODO(codaveto): Enable assets | 20/09/2022
-                  // const Image(
-                  //   image: AssetImage(
-                  //       'assets/images/2022092002.png'
-                  //   ),
-                  // ),
                   const SizedBox(height: 32),
                   ValueListenableBuilder<int>(
                     valueListenable: model.firstValue,
                     builder: (context, firstValue, child) => Text(
-                      'First value: $firstValue',
+                      'ViewModel: $firstValue',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -57,7 +51,7 @@ class SecondVetoView extends StatelessWidget {
                   ValueListenableBuilder<int>(
                     valueListenable: model.secondValue,
                     builder: (context, secondValue, child) => Text(
-                      'Second value: $secondValue',
+                      'ValueNotifier: $secondValue',
                       textAlign: TextAlign.center,
                     ),
                   ),

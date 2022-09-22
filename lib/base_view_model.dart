@@ -7,14 +7,13 @@ part 'view_model_builder.dart';
 
 /// Base view model class.
 abstract class BaseViewModel<E extends Object?> {
-
   /// Holds arguments of type [E] provided by the [ViewModelBuilder._argumentBuilder].
   late E? arguments;
 
   /// Callback that is used by [rebuild] to rebuild the widgets inside the parent [ViewModelBuilder].
   late Function(VoidCallback fn)? _rebuild;
 
-  /// Callback that is used by [ifMounted] to check whether the parent [ViewModelBuilder] is mounted.
+  /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
   late bool Function()? _mounted;
 
   /// Provides non-leaking access to the [context].
@@ -48,8 +47,7 @@ abstract class BaseViewModel<E extends Object?> {
   bool get hasError => _hasErrorNotifier.value;
 
   /// Underlying notifier that sets the current [ViewModelState] of the [BaseViewModel].
-  final ValueNotifier<ViewModelState> _stateNotifier =
-      ValueNotifier(ViewModelState.isInitialising);
+  final ValueNotifier<ViewModelState> _stateNotifier = ValueNotifier(ViewModelState.isInitialising);
 
   /// Listenable that listens to the current [ViewModelState] of the [BaseViewModel].
   ValueListenable<ViewModelState> get stateListenable => _stateNotifier;
@@ -127,11 +125,7 @@ abstract class BaseViewModel<E extends Object?> {
   void rebuild() => _rebuild!(() {});
 
   /// Used to check whether the parent is initialised [ViewModelBuilder] is mounted.
-  void ifMounted(VoidCallback voidCallback) {
-    if (_mounted!()) {
-      voidCallback();
-    }
-  }
+  void isMounted(void Function(bool mounted) _) => _(_mounted!());
 
   /// Provides the current [ViewModelBuilderState]'s [BuildContext].
   BuildContext get context => _disposableBuildContext!.context!;
@@ -149,7 +143,8 @@ abstract class BaseViewModel<E extends Object?> {
   double get textScaleFactor => MediaQuery.of(context).textScaleFactor;
 
   /// Provides a scaled value based on given [value] and [textScaleFactor].
-  double textScaled({required double value}) => value * textScaleFactor;
+  double textScaled({required double value, BuildContext? context}) =>
+      value * (context == null ? textScaleFactor : MediaQuery.textScaleFactorOf(context));
 
   /// Provides the current [ViewModelBuilderState]'s [FocusNode].
   FocusNode get focusNode => FocusScope.of(context);
@@ -160,19 +155,17 @@ abstract class BaseViewModel<E extends Object?> {
   /// Provides the current [ViewModelBuilderState]'s [MediaQueryData]'s [Size.height].
   double get height => MediaQuery.of(context).size.height;
 
-  /// Provides a design scaled value based on given [value], [width] and given [screenWidthInDesign].
+  /// Provides a design scaled value based on given [value], [width] and given [originalDesignWidth].
   ///
-  /// Where [screenWidthInDesign] is the width of the screen in your original UI design file.
-  double designScaledWidth(
-          {required double value, required double screenWidthInDesign}) =>
-      value * (width / screenWidthInDesign);
+  /// Where [originalDesignWidth] is the width of the screen in your original UI design file.
+  double scaledWidth({required double value, required double originalDesignWidth}) =>
+      value * (width / originalDesignWidth);
 
-  /// Provides a design scaled value based on given [value], [height] and given [screenHeightInDesign].
+  /// Provides a design scaled value based on given [value], [height] and given [originalDesignHeight].
   ///
-  /// Where [screenHeightInDesign] is the height of the screen in your original UI design file.
-  double designScaledHeight(
-          {required double value, required double screenHeightInDesign}) =>
-      value * (height / screenHeightInDesign);
+  /// Where [originalDesignHeight] is the height of the screen in your original UI design file.
+  double scaledHeight({required double value, required double originalDesignHeight}) =>
+      value * (height / originalDesignHeight);
 
   /// Helper method to call a [Future.delayed] with given [milliseconds].
   Future<void> wait(int milliseconds) async =>
@@ -180,8 +173,7 @@ abstract class BaseViewModel<E extends Object?> {
 
   /// Helper method to easily perform a [SchedulerBinding.addPostFrameCallback] with given [frameCallback].
   void addPostFrameCallback(FrameCallback frameCallback) =>
-      _asNullable(SchedulerBinding.instance)!
-          .addPostFrameCallback(frameCallback);
+      _asNullable(SchedulerBinding.instance)!.addPostFrameCallback(frameCallback);
 
   T? _asNullable<T>(T? value) => value;
 }
