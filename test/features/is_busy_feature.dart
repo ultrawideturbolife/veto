@@ -11,7 +11,7 @@ class IsBusyFeature extends UnitFeature {
           scenarios: [
             UnitScenario<BaseViewModelImplementation>(
               description: 'Setting busy status on the BaseViewModel',
-              systemUnderTest: () => BaseViewModelImplementation(doRebuild: false),
+              systemUnderTest: () => BaseViewModelImplementation(isMock: true),
               steps: [
                 Given(
                   'The BaseViewModel is not busy',

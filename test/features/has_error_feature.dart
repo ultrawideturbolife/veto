@@ -15,7 +15,7 @@ class HasErrorFeature extends UnitFeature {
     scenarios: [
       UnitScenario<BaseViewModelImplementation>(
         description: 'Setting error status on the BaseViewModel',
-        systemUnderTest: () => BaseViewModelImplementation(doRebuild: false),
+        systemUnderTest: () => BaseViewModelImplementation(isMock: true),
         steps: [
           Given(
             'The BaseViewModel has no error',
