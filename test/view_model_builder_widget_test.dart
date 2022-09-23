@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:gherkin_integration_test/integration_test.dart';
+import 'package:veto/base_view_model.dart';
+
+import 'models/base_view_model_implementation.dart';
+
+main() {
+  ViewModelBuilderWidgetTest().test();
+}
+
+class ViewModelBuilderWidgetTest extends IntegrationScenario {
+  static const _argument = 'Cookie';
+
+  ViewModelBuilderWidgetTest()
+      : super(
+          description: 'Initialising the BaseViewModel through the ViewModelBuilder',
+          steps: [
+            Given(
+              'The BaseViewModel is built',
+              (tester, log, [example, binding, result]) async {
+                log.info('Building the BaseViewModel..');
+                final baseViewModel = BaseViewModelImplementation<_DummyArguments>(isMock: false);
+                log.success('BaseViewModel built!');
+                log.info('Returning BaseViewModel as a result..');
+                return baseViewModel;
+              },
+            ),
+            When(
+              'The ViewModelBuilder is initialised with a String argument called \'$_argument\'',
+              (tester, log, [example, binding, result]) async {
+                final baseViewModel = result as BaseViewModelImplementation<_DummyArguments>;
+                await tester.pumpWidget(
+                  ViewModelBuilder<BaseViewModelImplementation>(
+                    argumentBuilder: () => const _DummyArguments(cookieType: _argument),
+                    builder: (context, model) => const SizedBox(),
+                    viewModelBuilder: () {
+                      return baseViewModel;
+                    },
+                  ),
+                );
+                await tester.pumpAndSettle();
+                return baseViewModel;
+              },
+            ),
+            Then(
+              'The BaseViewModel.arguments should be $_argument',
+              (tester, log, [example, binding, result]) {
+                final baseViewModel = result as BaseViewModelImplementation<_DummyArguments>;
+                expect(baseViewModel.arguments?.cookieType, _argument);
+              },
+            ),
+          ],
+        );
+}
+
+class _DummyArguments {
+  const _DummyArguments({
+    required this.cookieType,
+  });
+
+  final String cookieType;
+
+}
