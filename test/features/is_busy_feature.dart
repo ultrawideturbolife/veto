@@ -9,7 +9,7 @@ class IsBusyFeature extends UnitFeature {
       : super(
           description: 'BaseViewModel.isInitialised',
           scenarios: [
-            UnitScenario<BaseViewModelImplementation>(
+            UnitScenario<BaseViewModelImplementation, UnitExample>(
               description: 'Setting busy status on the BaseViewModel',
               systemUnderTest: () => BaseViewModelImplementation(isMock: true),
               steps: [

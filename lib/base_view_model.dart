@@ -8,16 +8,16 @@ part 'view_model_builder.dart';
 /// Base view model class.
 abstract class BaseViewModel<E extends Object?> {
   /// Holds arguments of type [E] provided by the [ViewModelBuilder._argumentBuilder].
-  late E? arguments;
+  late final E? arguments;
 
   /// Callback that is used by [rebuild] to rebuild the widgets inside the parent [ViewModelBuilder].
-  late Function(VoidCallback fn)? _rebuild;
+  late final Function(VoidCallback fn)? _rebuild;
 
   /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
-  late bool Function()? _mounted;
+  late final bool Function()? _mounted;
 
   /// Provides non-leaking access to the [context].
-  late DisposableBuildContext? _disposableBuildContext;
+  late final DisposableBuildContext? _disposableBuildContext;
 
   /// Underlying notifier that sets whether the [BaseViewModel] has been initialised.
   final ValueNotifier<bool> _isInitialisedNotifier = ValueNotifier(false);
@@ -158,13 +158,19 @@ abstract class BaseViewModel<E extends Object?> {
   /// Provides a design scaled value based on given [value], [width] and given [originalDesignWidth].
   ///
   /// Where [originalDesignWidth] is the width of the screen in your original UI design file.
-  double scaledWidth({required double value, required double originalDesignWidth}) =>
+  double scaledWidth({
+    required double value,
+    required double originalDesignWidth,
+  }) =>
       value * (width / originalDesignWidth);
 
   /// Provides a design scaled value based on given [value], [height] and given [originalDesignHeight].
   ///
   /// Where [originalDesignHeight] is the height of the screen in your original UI design file.
-  double scaledHeight({required double value, required double originalDesignHeight}) =>
+  double scaledHeight({
+    required double value,
+    required double originalDesignHeight,
+  }) =>
       value * (height / originalDesignHeight);
 
   /// Helper method to call a [Future.delayed] with given [milliseconds].

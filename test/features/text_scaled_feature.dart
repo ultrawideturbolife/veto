@@ -3,12 +3,16 @@ import 'package:gherkin_unit_test/unit_test.dart';
 
 import '../models/base_view_model_implementation.dart';
 
+main() {
+  TextScaledFeature().test();
+}
+
 class TextScaledFeature extends UnitFeature {
   TextScaledFeature()
       : super(
           description: 'BaseViewModel.textScaled',
           scenarios: [
-            UnitScenario<BaseViewModelImplementation>(
+            UnitScenario<BaseViewModelImplementation, UnitExample>(
               description: 'Text with and without scaling',
               examples: [
                 _TextScaledExample(stubbedScaleFactor: 0.70),
@@ -27,9 +31,10 @@ class TextScaledFeature extends UnitFeature {
                     log.success('Text scale factor was $stubbedScaleFactor!');
                   },
                 ),
-                WhenThen(
+                WhenThen<BaseViewModelImplementation, _TextScaledExample>(
                   'I call the BaseViewModel.textScaled method then it should return the (value * textScaleFactor)',
                   (systemUnderTest, log, [example, result]) {
+                    example?.firstValue();
                     log.info(
                         'Calling BaseViewModel.textScaled with default value ${_TextScaledExample.defaultFontSize}..');
                     final actualTextScaledValue =

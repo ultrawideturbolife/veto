@@ -6,7 +6,9 @@ class BaseViewModelImplementation<T> extends BaseViewModel<T> {
   }) : _isMock = isMock;
 
   final bool _isMock;
-  double stubbedTextScaleFactor = 1;
+  late double stubbedTextScaleFactor;
+  late double stubbedCurrentWidth;
+  late double stubbedCurrentHeight;
 
   @override
   void rebuild() {
@@ -19,5 +21,17 @@ class BaseViewModelImplementation<T> extends BaseViewModel<T> {
   double get textScaleFactor {
     if (_isMock) return stubbedTextScaleFactor;
     return super.textScaleFactor;
+  }
+
+  @override
+  double get width {
+    if (_isMock) return stubbedCurrentWidth;
+    return super.width;
+  }
+
+  @override
+  double get height {
+    if (_isMock) return stubbedCurrentHeight;
+    return super.height;
   }
 }
