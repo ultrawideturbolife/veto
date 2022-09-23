@@ -13,7 +13,7 @@ class HasErrorFeature extends UnitFeature {
       : super(
     description: 'BaseViewModel.isError',
     scenarios: [
-      UnitScenario<BaseViewModelImplementation>(
+      UnitScenario<BaseViewModelImplementation, UnitExample>(
         description: 'Setting error status on the BaseViewModel',
         systemUnderTest: () => BaseViewModelImplementation(isMock: true),
         steps: [
