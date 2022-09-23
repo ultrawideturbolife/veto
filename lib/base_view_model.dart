@@ -11,13 +11,13 @@ abstract class BaseViewModel<E extends Object?> {
   late final E? arguments;
 
   /// Callback that is used by [rebuild] to rebuild the widgets inside the parent [ViewModelBuilder].
-  late final Function(VoidCallback fn)? _rebuild;
+  late Function(VoidCallback fn)? _rebuild;
 
   /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
-  late final bool Function()? _mounted;
+  late bool Function()? _mounted;
 
   /// Provides non-leaking access to the [context].
-  late final DisposableBuildContext? _disposableBuildContext;
+  late DisposableBuildContext? _disposableBuildContext;
 
   /// Underlying notifier that sets whether the [BaseViewModel] has been initialised.
   final ValueNotifier<bool> _isInitialisedNotifier = ValueNotifier(false);
