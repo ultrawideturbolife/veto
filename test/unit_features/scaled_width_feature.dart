@@ -9,16 +9,41 @@ class ScaledWidthFeature extends UnitFeature {
           description: 'BaseViewModel.scaledWidth',
           scenarios: [
             UnitScenario<BaseViewModelImplementation, _ScaledWidthExample>(
-              description: 'Responsive sizing based on using the BaseViewModel.scaledWidth method',
+              description:
+                  'Responsive sizing based on using the BaseViewModel.scaledWidth method',
               examples: [
-                _ScaledWidthExample(width: 200, originalDesignWidth: 340, stubbedCurrentWidth: 390),
-                _ScaledWidthExample(width: 200, originalDesignWidth: 480, stubbedCurrentWidth: 390),
-                _ScaledWidthExample(width: 150, originalDesignWidth: 340, stubbedCurrentWidth: 390),
-                _ScaledWidthExample(width: 150, originalDesignWidth: 480, stubbedCurrentWidth: 390),
-                _ScaledWidthExample(width: 200, originalDesignWidth: 340, stubbedCurrentWidth: 460),
-                _ScaledWidthExample(width: 200, originalDesignWidth: 480, stubbedCurrentWidth: 460),
-                _ScaledWidthExample(width: 150, originalDesignWidth: 340, stubbedCurrentWidth: 460),
-                _ScaledWidthExample(width: 150, originalDesignWidth: 480, stubbedCurrentWidth: 460),
+                _ScaledWidthExample(
+                    width: 200,
+                    originalDesignWidth: 340,
+                    stubbedCurrentWidth: 390),
+                _ScaledWidthExample(
+                    width: 200,
+                    originalDesignWidth: 480,
+                    stubbedCurrentWidth: 390),
+                _ScaledWidthExample(
+                    width: 150,
+                    originalDesignWidth: 340,
+                    stubbedCurrentWidth: 390),
+                _ScaledWidthExample(
+                    width: 150,
+                    originalDesignWidth: 480,
+                    stubbedCurrentWidth: 390),
+                _ScaledWidthExample(
+                    width: 200,
+                    originalDesignWidth: 340,
+                    stubbedCurrentWidth: 460),
+                _ScaledWidthExample(
+                    width: 200,
+                    originalDesignWidth: 480,
+                    stubbedCurrentWidth: 460),
+                _ScaledWidthExample(
+                    width: 150,
+                    originalDesignWidth: 340,
+                    stubbedCurrentWidth: 460),
+                _ScaledWidthExample(
+                    width: 150,
+                    originalDesignWidth: 480,
+                    stubbedCurrentWidth: 460),
               ],
               systemUnderTest: () => BaseViewModelImplementation(isMock: true),
               steps: [
@@ -38,7 +63,8 @@ class ScaledWidthFeature extends UnitFeature {
                     final expectedTextScaledValue =
                         value * (stubbedCurrentWidth / originalDesignWidth);
                     expect(actualScaledWidthValue, expectedTextScaledValue);
-                    log.success('Design scaled value was $expectedTextScaledValue!');
+                    log.success(
+                        'Design scaled value was $expectedTextScaledValue!');
                   },
                 )
               ],

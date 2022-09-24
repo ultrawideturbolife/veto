@@ -19,7 +19,8 @@ class IsBusyFeature extends UnitFeature {
                     expect(systemUnderTest.isBusy, false);
                     log.success('BaseViewModel was not busy');
                     final startingState = systemUnderTest.state;
-                    log.info('Passing starting state as result to compare in last step.');
+                    log.info(
+                        'Passing starting state as result to compare in last step.');
                     return startingState;
                   },
                 ),

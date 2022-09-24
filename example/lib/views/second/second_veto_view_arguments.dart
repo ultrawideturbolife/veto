@@ -8,7 +8,6 @@ class SecondVetoViewArguments {
     required this.secondCounterValue,
   });
 
-
   final int firstCounterValue;
   final int secondCounterValue;
 }

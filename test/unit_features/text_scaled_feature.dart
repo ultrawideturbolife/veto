@@ -3,10 +3,6 @@ import 'package:gherkin_unit_test/unit_test.dart';
 
 import '../models/base_view_model_implementation.dart';
 
-main() {
-  TextScaledFeature().test();
-}
-
 class TextScaledFeature extends UnitFeature {
   TextScaledFeature()
       : super(
@@ -25,7 +21,8 @@ class TextScaledFeature extends UnitFeature {
                   'The textScaleFactor is set',
                   (systemUnderTest, log, [example, result]) {
                     final stubbedScaleFactor = example.firstValue();
-                    log.info('Setting the text scale factor stub to $stubbedScaleFactor.');
+                    log.info(
+                        'Setting the text scale factor stub to $stubbedScaleFactor.');
                     systemUnderTest.stubbedTextScaleFactor = stubbedScaleFactor;
                     expect(systemUnderTest.textScaleFactor, stubbedScaleFactor);
                     log.success('Text scale factor was $stubbedScaleFactor!');
@@ -37,15 +34,16 @@ class TextScaledFeature extends UnitFeature {
                     example?.firstValue();
                     log.info(
                         'Calling BaseViewModel.textScaled with default value ${_TextScaledExample.defaultFontSize}..');
-                    final actualTextScaledValue =
-                        systemUnderTest.textScaled(value: _TextScaledExample.defaultFontSize);
+                    final actualTextScaledValue = systemUnderTest.textScaled(
+                        value: _TextScaledExample.defaultFontSize);
                     log.info(
                         'Text scaled value of $actualTextScaledValue received, checking if valid..');
                     final stubbedScaleFactor = example.firstValue();
                     final expectedTextScaledValue =
                         _TextScaledExample.defaultFontSize * stubbedScaleFactor;
                     expect(actualTextScaledValue, expectedTextScaledValue);
-                    log.success('Text scaled value was $expectedTextScaledValue!');
+                    log.success(
+                        'Text scaled value was $expectedTextScaledValue!');
                   },
                 )
               ],

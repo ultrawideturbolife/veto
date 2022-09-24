@@ -43,18 +43,27 @@ class FirstVetoView extends StatelessWidget {
                         child: isInitialised
                             ? ValueListenableBuilder<bool>(
                                 valueListenable: model.isBusyListenable,
-                                builder: (context, isBusy, child) => AnimatedSwitcher(
-                                  duration: ConstDurations.defaultAnimationDuration,
+                                builder: (context, isBusy, child) =>
+                                    AnimatedSwitcher(
+                                  duration:
+                                      ConstDurations.defaultAnimationDuration,
                                   child: isBusy
                                       ? Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             ValueListenableBuilder<int>(
-                                              valueListenable: model.busySeconds,
-                                              builder: (context, busySeconds, child) => Text(
+                                              valueListenable:
+                                                  model.busySeconds,
+                                              builder: (context, busySeconds,
+                                                      child) =>
+                                                  Text(
                                                 'This model is busy for another $busySeconds seconds...',
-                                                style: model.textTheme.titleMedium!
-                                                    .copyWith(fontWeight: FontWeight.bold),
+                                                style: model
+                                                    .textTheme.titleMedium!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                               ),
                                             ),
                                             const SizedBox(height: 16),
@@ -62,24 +71,32 @@ class FirstVetoView extends StatelessWidget {
                                           ],
                                         )
                                       : ValueListenableBuilder<bool>(
-                                          valueListenable: model.hasErrorListenable,
-                                          builder: (context, hasError, child) => AnimatedContainer(
+                                          valueListenable:
+                                              model.hasErrorListenable,
+                                          builder: (context, hasError, child) =>
+                                              AnimatedContainer(
                                             height: constraints.maxHeight,
                                             curve: Curves.decelerate,
-                                            duration: ConstDurations.defaultAnimationDuration,
+                                            duration: ConstDurations
+                                                .defaultAnimationDuration,
                                             decoration: BoxDecoration(
-                                              color: hasError ? Colors.red : Colors.transparent,
+                                              color: hasError
+                                                  ? Colors.red
+                                                  : Colors.transparent,
                                             ),
                                             child: Container(
                                               margin: const EdgeInsets.all(16),
                                               decoration: BoxDecoration(
                                                 color: model.theme.canvasColor,
-                                                borderRadius: BorderRadius.circular(32),
+                                                borderRadius:
+                                                    BorderRadius.circular(32),
                                               ),
                                               child: SingleChildScrollView(
-                                                physics: const BouncingScrollPhysics(),
+                                                physics:
+                                                    const BouncingScrollPhysics(),
                                                 child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
                                                   children: <Widget>[
                                                     SizedBox(
                                                       height: model.textScaled(
@@ -89,14 +106,20 @@ class FirstVetoView extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       'First Veto View',
-                                                      style: model.textTheme.headline5!.copyWith(
-                                                        fontWeight: FontWeight.bold,
+                                                      style: model
+                                                          .textTheme.headline5!
+                                                          .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     Text(
                                                       'Made by Yyhwach_ and me',
-                                                      style: model.textTheme.subtitle2!.copyWith(
-                                                        fontWeight: FontWeight.bold,
+                                                      style: model
+                                                          .textTheme.subtitle2!
+                                                          .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -106,12 +129,14 @@ class FirstVetoView extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.symmetric(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
                                                         horizontal: 16,
                                                       ),
                                                       child: Row(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment.spaceEvenly,
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
                                                         children: [
                                                           Flexible(
                                                             child: Column(
@@ -119,26 +144,32 @@ class FirstVetoView extends StatelessWidget {
                                                                 Text(
                                                                   'ViewModel',
                                                                   maxLines: 1,
-                                                                  overflow: TextOverflow.ellipsis,
-                                                                  style: Theme.of(context)
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  style: Theme.of(
+                                                                          context)
                                                                       .textTheme
                                                                       .bodyText1!
                                                                       .copyWith(
-                                                                        fontWeight: FontWeight.bold,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                                 ),
                                                                 Text(
                                                                   '${model.modelCounter}',
-                                                                  style: Theme.of(context)
+                                                                  style: Theme.of(
+                                                                          context)
                                                                       .textTheme
                                                                       .headline4,
                                                                 ),
                                                               ],
                                                             ),
                                                           ),
-                                                          ValueListenableBuilder<int>(
-                                                            valueListenable:
-                                                                model.valueListenableCounter,
+                                                          ValueListenableBuilder<
+                                                              int>(
+                                                            valueListenable: model
+                                                                .valueListenableCounter,
                                                             builder: (
                                                               context,
                                                               valueListenableCounter,
@@ -150,8 +181,11 @@ class FirstVetoView extends StatelessWidget {
                                                                   Text(
                                                                     'ValueNotifier',
                                                                     maxLines: 1,
-                                                                    overflow: TextOverflow.ellipsis,
-                                                                    style: Theme.of(context)
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    style: Theme.of(
+                                                                            context)
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
@@ -162,7 +196,8 @@ class FirstVetoView extends StatelessWidget {
                                                                   Text(
                                                                     valueListenableCounter
                                                                         .toString(),
-                                                                    style: Theme.of(context)
+                                                                    style: Theme.of(
+                                                                            context)
                                                                         .textTheme
                                                                         .headline4,
                                                                   ),
@@ -180,56 +215,72 @@ class FirstVetoView extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.symmetric(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
                                                           horizontal: 16),
                                                       child: Row(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
                                                           FloatingActionButton(
-                                                            onPressed: model.incrementModelCounter,
-                                                            backgroundColor: Colors.red,
+                                                            onPressed: model
+                                                                .incrementModelCounter,
+                                                            backgroundColor:
+                                                                Colors.red,
                                                             heroTag: '1',
-                                                            child: const Icon(Icons.add),
+                                                            child: const Icon(
+                                                                Icons.add),
                                                           ),
                                                           FloatingActionButton(
-                                                            onPressed:
-                                                                model.incrementValueNotifierCounter,
-                                                            backgroundColor: Colors.blue,
+                                                            onPressed: model
+                                                                .incrementValueNotifierCounter,
+                                                            backgroundColor:
+                                                                Colors.blue,
                                                             heroTag: '2',
-                                                            child: const Icon(Icons.add),
+                                                            child: const Icon(
+                                                                Icons.add),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding:
-                                                          const EdgeInsets.symmetric(vertical: 16),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 16),
                                                       child: ElevatedButton(
                                                         onPressed: model.reset,
-                                                        child: const Text('Reset'),
+                                                        child:
+                                                            const Text('Reset'),
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.symmetric(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
                                                         horizontal: 16,
                                                       ),
                                                       child: Row(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
                                                           FloatingActionButton(
-                                                            onPressed: model.decrementModelCounter,
-                                                            backgroundColor: Colors.red,
+                                                            onPressed: model
+                                                                .decrementModelCounter,
+                                                            backgroundColor:
+                                                                Colors.red,
                                                             heroTag: '3',
-                                                            child: const Icon(Icons.remove),
+                                                            child: const Icon(
+                                                                Icons.remove),
                                                           ),
                                                           FloatingActionButton(
-                                                            onPressed:
-                                                                model.decrementValueNotifierCounter,
-                                                            backgroundColor: Colors.blue,
+                                                            onPressed: model
+                                                                .decrementValueNotifierCounter,
+                                                            backgroundColor:
+                                                                Colors.blue,
                                                             heroTag: '4',
-                                                            child: const Icon(Icons.remove),
+                                                            child: const Icon(
+                                                                Icons.remove),
                                                           ),
                                                         ],
                                                       ),
@@ -238,22 +289,29 @@ class FirstVetoView extends StatelessWidget {
                                                     ElevatedButton(
                                                       style: ButtonStyle(
                                                           backgroundColor:
-                                                              MaterialStateProperty.all(
-                                                                  Colors.pink)),
-                                                      onPressed: model.pushSecondView,
-                                                      child: const Text('Push Arguments'),
+                                                              MaterialStateProperty
+                                                                  .all(Colors
+                                                                      .pink)),
+                                                      onPressed:
+                                                          model.pushSecondView,
+                                                      child: const Text(
+                                                          'Push Arguments'),
                                                     ),
                                                     const SizedBox(height: 16),
                                                     Padding(
-                                                      padding: const EdgeInsets.symmetric(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
                                                           horizontal: 16),
                                                       child: Row(
                                                         children: [
-                                                          ValueListenableBuilder<MountedStatus>(
-                                                            valueListenable: model.mountedStatus,
-                                                            builder:
-                                                                (context, mountedStatus, child) =>
-                                                                    Expanded(
+                                                          ValueListenableBuilder<
+                                                              MountedStatus>(
+                                                            valueListenable: model
+                                                                .mountedStatus,
+                                                            builder: (context,
+                                                                    mountedStatus,
+                                                                    child) =>
+                                                                Expanded(
                                                               child: Text(
                                                                 'Mounted: ${mountedStatus.name.capitalizeFirstLetter}',
                                                               ),
@@ -262,10 +320,13 @@ class FirstVetoView extends StatelessWidget {
                                                           ElevatedButton(
                                                             style: ButtonStyle(
                                                                 backgroundColor:
-                                                                    MaterialStateProperty.all(
-                                                                        Colors.orange)),
-                                                            onPressed: model.updateMountedStatus,
-                                                            child: const Text('Check status'),
+                                                                    MaterialStateProperty
+                                                                        .all(Colors
+                                                                            .orange)),
+                                                            onPressed: model
+                                                                .updateMountedStatus,
+                                                            child: const Text(
+                                                                'Check status'),
                                                           ),
                                                         ],
                                                       ),
@@ -274,59 +335,93 @@ class FirstVetoView extends StatelessWidget {
                                                     ElevatedButton(
                                                       style: ButtonStyle(
                                                           backgroundColor:
-                                                              MaterialStateProperty.all(
-                                                                  Colors.yellow)),
-                                                      onPressed: model.triggerBusy,
+                                                              MaterialStateProperty
+                                                                  .all(Colors
+                                                                      .yellow)),
+                                                      onPressed:
+                                                          model.triggerBusy,
                                                       child: Text(
                                                         'Trigger Busy',
-                                                        style: model.textTheme.bodyText1!
-                                                            .copyWith(color: Colors.black),
+                                                        style: model.textTheme
+                                                            .bodyText1!
+                                                            .copyWith(
+                                                                color: Colors
+                                                                    .black),
                                                       ),
                                                     ),
                                                     const SizedBox(height: 16),
                                                     Padding(
-                                                      padding: const EdgeInsets.symmetric(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
                                                           horizontal: 16),
-                                                      child: ValueListenableBuilder<bool>(
-                                                        valueListenable: model.hasErrorListenable,
-                                                        builder: (context, hasError, child) => Row(
+                                                      child:
+                                                          ValueListenableBuilder<
+                                                              bool>(
+                                                        valueListenable: model
+                                                            .hasErrorListenable,
+                                                        builder: (context,
+                                                                hasError,
+                                                                child) =>
+                                                            Row(
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment.spaceBetween,
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
                                                             AnimatedOpacity(
-                                                              duration: ConstDurations
-                                                                  .defaultAnimationDuration,
-                                                              opacity: hasError ? 0.3 : 1,
-                                                              child: IgnorePointer(
-                                                                ignoring: hasError,
-                                                                child: ElevatedButton(
-                                                                  style: ButtonStyle(
+                                                              duration:
+                                                                  ConstDurations
+                                                                      .defaultAnimationDuration,
+                                                              opacity: hasError
+                                                                  ? 0.3
+                                                                  : 1,
+                                                              child:
+                                                                  IgnorePointer(
+                                                                ignoring:
+                                                                    hasError,
+                                                                child:
+                                                                    ElevatedButton(
+                                                                  style:
+                                                                      ButtonStyle(
                                                                     backgroundColor:
-                                                                        MaterialStateProperty.all(
-                                                                      Colors.black,
+                                                                        MaterialStateProperty
+                                                                            .all(
+                                                                      Colors
+                                                                          .black,
                                                                     ),
                                                                   ),
-                                                                  onPressed: model.triggerError,
-                                                                  child:
-                                                                      const Text('Trigger Error'),
+                                                                  onPressed: model
+                                                                      .triggerError,
+                                                                  child: const Text(
+                                                                      'Trigger Error'),
                                                                 ),
                                                               ),
                                                             ),
                                                             AnimatedOpacity(
-                                                              duration: ConstDurations
-                                                                  .defaultAnimationDuration,
-                                                              opacity: !hasError ? 0.3 : 1,
-                                                              child: IgnorePointer(
-                                                                ignoring: !hasError,
-                                                                child: ElevatedButton(
-                                                                  style: ButtonStyle(
+                                                              duration:
+                                                                  ConstDurations
+                                                                      .defaultAnimationDuration,
+                                                              opacity: !hasError
+                                                                  ? 0.3
+                                                                  : 1,
+                                                              child:
+                                                                  IgnorePointer(
+                                                                ignoring:
+                                                                    !hasError,
+                                                                child:
+                                                                    ElevatedButton(
+                                                                  style:
+                                                                      ButtonStyle(
                                                                     backgroundColor:
-                                                                        MaterialStateProperty.all(
-                                                                      Colors.black,
+                                                                        MaterialStateProperty
+                                                                            .all(
+                                                                      Colors
+                                                                          .black,
                                                                     ),
                                                                   ),
-                                                                  onPressed: model.removeError,
-                                                                  child: const Text('Remove Error'),
+                                                                  onPressed: model
+                                                                      .removeError,
+                                                                  child: const Text(
+                                                                      'Remove Error'),
                                                                 ),
                                                               ),
                                                             ),
@@ -335,29 +430,43 @@ class FirstVetoView extends StatelessWidget {
                                                       ),
                                                     ),
                                                     AnimatedContainer(
-                                                      duration:
-                                                          ConstDurations.defaultAnimationDuration,
-                                                      margin: const EdgeInsets.only(top: 16),
+                                                      duration: ConstDurations
+                                                          .defaultAnimationDuration,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              top: 16),
                                                       decoration: BoxDecoration(
-                                                        color: Colors.blueAccent,
-                                                        borderRadius: BorderRadius.circular(32),
+                                                        color:
+                                                            Colors.blueAccent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(32),
                                                       ),
                                                       width: model.scaledWidth(
                                                         value: 200,
-                                                        originalDesignWidth: _originalDesignWidth,
+                                                        originalDesignWidth:
+                                                            _originalDesignWidth,
                                                       ),
-                                                      height: model.scaledHeight(
+                                                      height:
+                                                          model.scaledHeight(
                                                         value: 20,
-                                                        originalDesignHeight: _originalDesignHeight,
+                                                        originalDesignHeight:
+                                                            _originalDesignHeight,
                                                       ),
                                                       child: Row(
                                                         children: [
                                                           Expanded(
                                                             child: Text(
                                                               'Scaled Container',
-                                                              textAlign: TextAlign.center,
-                                                              style: model.textTheme.subtitle2!
-                                                                  .copyWith(color: Colors.white),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: model
+                                                                  .textTheme
+                                                                  .subtitle2!
+                                                                  .copyWith(
+                                                                      color: Colors
+                                                                          .white),
                                                             ),
                                                           ),
                                                         ],

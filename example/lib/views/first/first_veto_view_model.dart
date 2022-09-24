@@ -14,7 +14,8 @@ class FirstVetoViewModel extends BaseViewModel {
   final ValueNotifier<int> _valueNotifierCounter = ValueNotifier(0);
   ValueListenable<int> get valueListenableCounter => _valueNotifierCounter;
 
-  final ValueNotifier<MountedStatus> _mountedStatus = ValueNotifier(MountedStatus.unknown);
+  final ValueNotifier<MountedStatus> _mountedStatus =
+      ValueNotifier(MountedStatus.unknown);
   ValueListenable<MountedStatus> get mountedStatus => _mountedStatus;
 
   final ValueNotifier<int> _busySeconds = ValueNotifier(0);
@@ -92,7 +93,8 @@ class FirstVetoViewModel extends BaseViewModel {
   /// Updates the current mounted status to [_mountedStatus] for demonstration purposes.
   void updateMountedStatus() => isMounted(
         (mounted) {
-          _mountedStatus.value = mounted ? MountedStatus.mounted : MountedStatus.unmounted;
+          _mountedStatus.value =
+              mounted ? MountedStatus.mounted : MountedStatus.unmounted;
         },
       );
 

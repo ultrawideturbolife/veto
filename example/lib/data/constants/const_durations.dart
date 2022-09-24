@@ -1,3 +1,3 @@
 class ConstDurations {
-    static const defaultAnimationDuration = Duration(milliseconds: 200);
+  static const defaultAnimationDuration = Duration(milliseconds: 200);
 }

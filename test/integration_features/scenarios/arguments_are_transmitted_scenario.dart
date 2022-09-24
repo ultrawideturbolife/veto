@@ -10,13 +10,15 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
 
   ArgumentsAreTransmittedScenario()
       : super(
-          description: 'Testing the arguments functionality of the ViewModelBuilder',
+          description:
+              'Testing the arguments functionality of the ViewModelBuilder',
           steps: [
             Given(
               'The BaseViewModel is built',
               (tester, log, [example, binding, result]) async {
                 log.info('Building the BaseViewModel..');
-                final baseViewModel = BaseViewModelImplementation<_DummyArguments>(isMock: false);
+                final baseViewModel =
+                    BaseViewModelImplementation<_DummyArguments>(isMock: false);
                 log.success('BaseViewModel built!');
                 log.info('Returning BaseViewModel as a result..');
                 return baseViewModel;
@@ -25,10 +27,12 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
             When(
               'The ViewModelBuilder is initialised with a String argument called \'$_argument\'',
               (tester, log, [example, binding, result]) async {
-                final baseViewModel = result as BaseViewModelImplementation<_DummyArguments>;
+                final baseViewModel =
+                    result as BaseViewModelImplementation<_DummyArguments>;
                 await tester.pumpWidget(
                   ViewModelBuilder<BaseViewModelImplementation>(
-                    argumentBuilder: () => const _DummyArguments(cookieType: _argument),
+                    argumentBuilder: () =>
+                        const _DummyArguments(cookieType: _argument),
                     builder: (context, model) => const SizedBox(),
                     viewModelBuilder: () {
                       return baseViewModel;
@@ -42,7 +46,8 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
             Then(
               'The BaseViewModel.arguments should be $_argument',
               (tester, log, [example, binding, result]) {
-                final baseViewModel = result as BaseViewModelImplementation<_DummyArguments>;
+                final baseViewModel =
+                    result as BaseViewModelImplementation<_DummyArguments>;
                 expect(baseViewModel.arguments?.cookieType, _argument);
                 log.success('The argument was $_argument!');
               },
