@@ -47,7 +47,8 @@ abstract class BaseViewModel<E extends Object?> {
   bool get hasError => _hasErrorNotifier.value;
 
   /// Underlying notifier that sets the current [ViewModelState] of the [BaseViewModel].
-  final ValueNotifier<ViewModelState> _stateNotifier = ValueNotifier(ViewModelState.isInitialising);
+  final ValueNotifier<ViewModelState> _stateNotifier =
+      ValueNotifier(ViewModelState.isInitialising);
 
   /// Listenable that listens to the current [ViewModelState] of the [BaseViewModel].
   ValueListenable<ViewModelState> get stateListenable => _stateNotifier;
@@ -144,7 +145,10 @@ abstract class BaseViewModel<E extends Object?> {
 
   /// Provides a scaled value based on given [value] and [textScaleFactor].
   double textScaled({required double value, BuildContext? context}) =>
-      value * (context == null ? textScaleFactor : MediaQuery.textScaleFactorOf(context));
+      value *
+      (context == null
+          ? textScaleFactor
+          : MediaQuery.textScaleFactorOf(context));
 
   /// Provides the current [ViewModelBuilderState]'s [FocusNode].
   FocusNode get focusNode => FocusScope.of(context);
@@ -179,7 +183,8 @@ abstract class BaseViewModel<E extends Object?> {
 
   /// Helper method to easily perform a [SchedulerBinding.addPostFrameCallback] with given [frameCallback].
   void addPostFrameCallback(FrameCallback frameCallback) =>
-      _asNullable(SchedulerBinding.instance)!.addPostFrameCallback(frameCallback);
+      _asNullable(SchedulerBinding.instance)!
+          .addPostFrameCallback(frameCallback);
 
   T? _asNullable<T>(T? value) => value;
 }
