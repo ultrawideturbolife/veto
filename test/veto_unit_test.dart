@@ -1,11 +1,11 @@
 import 'package:gherkin_unit_test/unit_test.dart';
 
-import 'features/has_error_feature.dart';
-import 'features/is_busy_feature.dart';
-import 'features/is_initialised_feature.dart';
-import 'features/scaled_height_feature.dart';
-import 'features/scaled_width_feature.dart';
-import 'features/text_scaled_feature.dart';
+import 'unit_features/has_error_feature.dart';
+import 'unit_features/is_busy_feature.dart';
+import 'unit_features/is_initialised_feature.dart';
+import 'unit_features/scaled_height_feature.dart';
+import 'unit_features/scaled_width_feature.dart';
+import 'unit_features/text_scaled_feature.dart';
 
 void main() {
   VetoUnitTest().test();

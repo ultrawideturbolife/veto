@@ -3,18 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gherkin_integration_test/integration_test.dart';
 import 'package:veto/base_view_model.dart';
 
-import 'models/base_view_model_implementation.dart';
+import '../../models/base_view_model_implementation.dart';
 
-main() {
-  ViewModelBuilderWidgetTest().test();
-}
-
-class ViewModelBuilderWidgetTest extends IntegrationScenario {
+class ArgumentsAreTransmittedScenario extends IntegrationScenario {
   static const _argument = 'Cookie';
 
-  ViewModelBuilderWidgetTest()
+  ArgumentsAreTransmittedScenario()
       : super(
-          description: 'Initialising the BaseViewModel through the ViewModelBuilder',
+          description: 'Testing the arguments functionality of the ViewModelBuilder',
           steps: [
             Given(
               'The BaseViewModel is built',
@@ -48,6 +44,7 @@ class ViewModelBuilderWidgetTest extends IntegrationScenario {
               (tester, log, [example, binding, result]) {
                 final baseViewModel = result as BaseViewModelImplementation<_DummyArguments>;
                 expect(baseViewModel.arguments?.cookieType, _argument);
+                log.success('The argument was $_argument!');
               },
             ),
           ],
@@ -60,5 +57,4 @@ class _DummyArguments {
   });
 
   final String cookieType;
-
 }
