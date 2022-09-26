@@ -123,7 +123,7 @@ abstract class BaseViewModel<E extends Object?> {
   }
 
   /// Used to rebuild the widgets inside the parent [ViewModelBuilder].
-  void rebuild() => _rebuild!(() {});
+  void rebuild() => _rebuild?.call(() {});
 
   /// Used to check whether the parent is initialised [ViewModelBuilder] is mounted.
   void isMounted(void Function(bool mounted) _) => _(_mounted!());
