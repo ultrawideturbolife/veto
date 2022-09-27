@@ -40,7 +40,8 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
   ViewModelBuilderState<T> createState() => ViewModelBuilderState<T>();
 }
 
-class ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBuilder<T>> {
+class ViewModelBuilderState<T extends BaseViewModel>
+    extends State<ViewModelBuilder<T>> {
   /// The current [BaseViewModel].
   late final T _viewModel;
 

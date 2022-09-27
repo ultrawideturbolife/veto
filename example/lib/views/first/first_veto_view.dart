@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:veto/base_view_model.dart';
 import 'package:veto/view_model_state.dart';
 
+// TODO(codaveto): Demonstrate ViewModelBuilder.disposeViewModel argument | 27/09/2022
+// TODO(codaveto): Demonstrate ViewModelBuilder.initialiseViewModel argument | 27/09/2022
+// TODO(codaveto): Demonstrate ViewModelBuilder.rebuild argument | 27/09/2022
+
 class FirstVetoView extends StatelessWidget {
   const FirstVetoView({Key? key}) : super(key: key);
   static const String route = 'first-veto-view';
