@@ -13,9 +13,6 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
   })  : _builder = builder,
         _viewModelBuilder = viewModelBuilder,
         _argumentBuilder = argumentBuilder,
-        _disposeViewModel = disposeViewModel,
-        _initialiseViewModel = initialiseViewModel,
-        _rebuild = rebuild,
         super(key: key);
 
   /// Builder method that builds the widget tree.
@@ -26,15 +23,6 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
 
   /// Builder method that provides the [BaseViewModel.initialise] with arguments.
   final dynamic Function()? _argumentBuilder;
-
-  /// Whether to dispose the view model.
-  final bool _disposeViewModel;
-
-  /// Whether to initialise the view model.
-  final bool _initialiseViewModel;
-
-  /// Whether to rebuild the view when [BaseViewModel.rebuild] is called.
-  final bool _rebuild;
 
   @override
   ViewModelBuilderState<T> createState() => ViewModelBuilderState<T>();
@@ -48,23 +36,19 @@ class ViewModelBuilderState<T extends BaseViewModel>
   /// Initialises the [BaseViewModel] and its needed methods.
   @override
   void initState() {
-    if (widget._initialiseViewModel) {
-      _viewModel = widget._viewModelBuilder()
-        .._disposableBuildContext = DisposableBuildContext(this)
-        .._mounted = (() => mounted)
-        .._rebuild = widget._rebuild ? setState : null
-        ..arguments = widget._argumentBuilder?.call();
-      _viewModel.initialise();
-    } else {
-      _viewModel = widget._viewModelBuilder();
-    }
+    _viewModel = widget._viewModelBuilder()
+      .._disposableBuildContext = DisposableBuildContext(this)
+      .._mounted = (() => mounted)
+      .._rebuild = setState
+      ..arguments = widget._argumentBuilder?.call();
+    _viewModel.initialise();
     super.initState();
   }
 
   /// Disposes the [BaseViewModel] and its given methods.
   @override
   void dispose() {
-    if (widget._disposeViewModel) _viewModel.dispose();
+    _viewModel.dispose();
     super.dispose();
   }
 

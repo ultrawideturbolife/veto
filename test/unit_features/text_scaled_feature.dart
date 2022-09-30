@@ -15,11 +15,12 @@ class TextScaledFeature extends UnitFeature {
                 _TextScaledExample(stubbedScaleFactor: 1),
                 _TextScaledExample(stubbedScaleFactor: 1.35),
               ],
-              systemUnderTest: () => BaseViewModelImplementation(isMock: true),
+              systemUnderTest: (mocks) =>
+                  BaseViewModelImplementation(isMock: true),
               steps: [
                 Given(
                   'The textScaleFactor is set',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     final stubbedScaleFactor = example.firstValue();
                     log.info(
                         'Setting the text scale factor stub to $stubbedScaleFactor.');
@@ -30,7 +31,7 @@ class TextScaledFeature extends UnitFeature {
                 ),
                 WhenThen<BaseViewModelImplementation, _TextScaledExample>(
                   'I call the BaseViewModel.textScaled method then it should return the (value * textScaleFactor)',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     example?.firstValue();
                     log.info(
                         'Calling BaseViewModel.textScaled with default value ${_TextScaledExample.defaultFontSize}..');

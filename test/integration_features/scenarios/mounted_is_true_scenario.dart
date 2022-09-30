@@ -13,36 +13,32 @@ class MountedIsTrueScenario extends IntegrationScenario {
           steps: [
             Given(
               'The BaseViewModel is built',
-              (tester, log, [example, binding, result]) async {
+              (tester, log, box, mocks, [example, binding]) async {
                 log.info('Building the BaseViewModel..');
                 final baseViewModel =
                     BaseViewModelImplementation(isMock: false);
                 log.success('BaseViewModel built!');
-                log.info('Returning BaseViewModel as a result..');
-                return baseViewModel;
+                box.write(#baseViewModel, baseViewModel);
               },
             ),
             When(
               'the ViewModelBuilder is initialised',
-              (tester, log, [example, binding, result]) async {
-                final BaseViewModelImplementation baseViewModel =
-                    result.asType();
+              (tester, log, box, mocks, [example, binding]) async {
                 await tester.pumpWidget(
                   ViewModelBuilder<BaseViewModelImplementation>(
                     builder: (context, model) => const SizedBox(),
-                    viewModelBuilder: () => baseViewModel,
+                    viewModelBuilder: () => box.read(#baseViewModel),
                   ),
                 );
                 await tester.pumpAndSettle();
-                return baseViewModel;
               },
             ),
             Then(
               'The BaseViewModel.isMounted method should return true',
-              (tester, log, [example, binding, result]) {
-                final BaseViewModelImplementation baseViewModel =
-                    result.asType();
-                baseViewModel.isMounted((mounted) {
+              (tester, log, box, mocks, [example, binding]) {
+                box
+                    .read<BaseViewModelImplementation>(#baseViewModel)
+                    .isMounted((mounted) {
                   expect(mounted, true);
                 });
                 log.success('BaseViewModel was mounted!');

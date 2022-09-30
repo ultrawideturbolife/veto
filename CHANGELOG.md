@@ -1,3 +1,7 @@
+## 0.0.1+5
+
+* **⚠️ Breaking:** Removed `disposeViewModel`, `initialiseViewModel` and `rebuild` boolean arguments to the `ViewModelBuilder`.
+
 ## 0.0.1+4
 
 * **✨ New:** Added `disposeViewModel`, `initialiseViewModel` and `rebuild` boolean arguments to the `ViewModelBuilder`.

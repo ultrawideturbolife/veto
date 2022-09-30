@@ -45,11 +45,12 @@ class ScaledWidthFeature extends UnitFeature {
                     originalDesignWidth: 480,
                     stubbedCurrentWidth: 460),
               ],
-              systemUnderTest: () => BaseViewModelImplementation(isMock: true),
+              systemUnderTest: (mocks) =>
+                  BaseViewModelImplementation(isMock: true),
               steps: [
                 WhenThen(
                   'I call the BaseViewModel.scaledWidth method then it should return the (value * (width / originalDesignWidth))',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     final value = example!.width;
                     final originalDesignWidth = example.originalDesignWidth;
                     final stubbedCurrentWidth = example.stubbedCurrentWidth;

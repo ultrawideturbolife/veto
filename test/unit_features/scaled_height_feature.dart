@@ -85,11 +85,12 @@ class ScaledHeightFeature extends UnitFeature {
                     originalDesignHeight: 200,
                     stubbedCurrentHeight: 890),
               ],
-              systemUnderTest: () => BaseViewModelImplementation(isMock: true),
+              systemUnderTest: (mocks) =>
+                  BaseViewModelImplementation(isMock: true),
               steps: [
                 WhenThen(
                   'I call the BaseViewModel.scaledHeight method then it should return the (value * (height / originalDesignHeight))',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     final value = example.firstValue();
                     final originalDesignHeight = example.secondValue();
                     final stubbedCurrentHeight = example.thirdValue();

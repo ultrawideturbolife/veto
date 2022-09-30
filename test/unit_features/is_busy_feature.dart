@@ -11,49 +11,44 @@ class IsBusyFeature extends UnitFeature {
           scenarios: [
             UnitScenario<BaseViewModelImplementation, UnitExample>(
               description: 'Setting busy status on the BaseViewModel',
-              systemUnderTest: () => BaseViewModelImplementation(isMock: true),
+              systemUnderTest: (mocks) =>
+                  BaseViewModelImplementation(isMock: true),
               steps: [
                 Given(
                   'The BaseViewModel is not busy',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, false);
                     log.success('BaseViewModel was not busy');
-                    final startingState = systemUnderTest.state;
-                    log.info(
-                        'Passing starting state as result to compare in last step.');
-                    return startingState;
+                    box.write(#startingState, systemUnderTest.state);
                   },
                 ),
                 When(
                   'we call the setBusy method with true',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     systemUnderTest.setBusy(true);
-                    return result;
                   },
                 ),
                 Then(
                   'the BaseViewModel should be busy',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, true);
                     log.success('Boolean status was busy!');
                     expect(systemUnderTest.state, ViewModelState.isBusy);
                     log.success('ViewModelState was busy!');
-                    return result;
                   },
                 ),
                 When(
                   'we call the setBusy method with false',
-                  (systemUnderTest, log, [example, result]) async {
+                  (systemUnderTest, log, box, mocks, [example]) async {
                     systemUnderTest.setBusy(false);
-                    return result;
                   },
                 ),
                 Then(
                   'the BaseViewModel should no longer be busy',
-                  (systemUnderTest, log, [example, result]) {
+                  (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, false);
                     log.success('BaseViewModel was not busy!');
-                    expect(systemUnderTest.state, result);
+                    expect(systemUnderTest.state, box.read(#startingState));
                     log.success('ViewModelState was restored!');
                   },
                 )
