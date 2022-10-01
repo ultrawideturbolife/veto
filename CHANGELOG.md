@@ -1,3 +1,8 @@
+## 0.0.1+6
+
+* Fix fully removing unused parameters.
+* Remove irrelevant todos.
+
 ## 0.0.1+5
 
 * **⚠️ Breaking:** Removed `disposeViewModel`, `initialiseViewModel` and `rebuild` boolean arguments to the `ViewModelBuilder`.
