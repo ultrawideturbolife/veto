@@ -1,4 +1,4 @@
-part of 'base_view_model.dart';
+part of '../data/models/base_view_model.dart';
 
 /// Used to build and provide a [BaseViewModel] to the widget tree.
 class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {

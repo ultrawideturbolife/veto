@@ -1,3 +1,7 @@
+## 0.0.1+7
+
+* Update example project
+
 ## 0.0.1+6
 
 * Fix fully removing unused parameters.

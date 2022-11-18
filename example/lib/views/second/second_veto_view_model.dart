@@ -1,8 +1,7 @@
-import 'package:example/views/first/first_veto_view.dart';
 import 'package:example/views/second/second_veto_view_arguments.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:veto/base_view_model.dart';
+import 'package:veto/data/models/base_view_model.dart';
 
 class SecondVetoViewModel extends BaseViewModel<SecondVetoViewArguments> {
   SecondVetoViewModel();

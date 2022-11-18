@@ -1,4 +1,4 @@
-import 'package:veto/base_view_model.dart';
+import 'package:veto/data/models/base_view_model.dart';
 
 /// Used to indicate the current state of a [BaseViewModel].
 enum ViewModelState {

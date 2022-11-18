@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:veto/view_model_state.dart';
+import 'package:veto/data/enums/view_model_state.dart';
 
-part 'view_model_builder.dart';
+part '../../widgets/view_model_builder.dart';
 
 /// Base view model class.
 abstract class BaseViewModel<E extends Object?> {

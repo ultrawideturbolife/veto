@@ -1,5 +1,3 @@
-# Veto
-
 # 📚 Veto
 
 > *A lightweight MVVM state management solution originally inspired by the [FilledStacks](https://www.filledstacks.com/) [stacked](https://pub.dev/packages/stacked) package.*

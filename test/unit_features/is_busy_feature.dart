@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gherkin_unit_test/unit_test.dart';
-import 'package:veto/view_model_state.dart';
+import 'package:veto/data/enums/view_model_state.dart';
 
 import '../models/base_view_model_implementation.dart';
 
