@@ -36,11 +36,11 @@ class MountedIsTrueScenario extends IntegrationScenario {
             Then(
               'The BaseViewModel.isMounted method should return true',
               (tester, log, box, mocks, [example, binding]) {
-                box
-                    .read<BaseViewModelImplementation>(#baseViewModel)
-                    .isMounted((mounted) {
-                  expect(mounted, true);
-                });
+                expect(
+                    box
+                        .read<BaseViewModelImplementation>(#baseViewModel)
+                        .isMounted,
+                    true);
                 log.success('BaseViewModel was mounted!');
               },
             ),

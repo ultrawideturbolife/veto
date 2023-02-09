@@ -14,7 +14,7 @@ abstract class BaseViewModel<E extends Object?> {
   late Function(VoidCallback fn)? _rebuild;
 
   /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
-  late bool Function()? _mounted;
+  late bool Function()? isMounted;
 
   /// Provides non-leaking access to the [context].
   late DisposableBuildContext? _disposableBuildContext;
@@ -72,7 +72,7 @@ abstract class BaseViewModel<E extends Object?> {
   void dispose() {
     _disposableBuildContext!.dispose();
     _disposableBuildContext = null;
-    _mounted = null;
+    isMounted = null;
     _rebuild = null;
   }
 
@@ -124,9 +124,6 @@ abstract class BaseViewModel<E extends Object?> {
 
   /// Used to rebuild the widgets inside the parent [ViewModelBuilder].
   void rebuild() => _rebuild?.call(() {});
-
-  /// Used to check whether the parent is initialised [ViewModelBuilder] is mounted.
-  void isMounted(void Function(bool mounted) _) => _(_mounted!());
 
   /// Provides the current [ViewModelBuilderState]'s [BuildContext].
   BuildContext get context => _disposableBuildContext!.context!;

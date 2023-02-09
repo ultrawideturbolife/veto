@@ -1,3 +1,7 @@
+## 0.0.2
+
+* **⚠️ Breaking:** Refactor `BaseViewModel.isMounted` to function instead of callback.
+
 ## 0.0.1+7
 
 * Update example project
