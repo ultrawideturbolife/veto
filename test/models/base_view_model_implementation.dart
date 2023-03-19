@@ -16,22 +16,4 @@ class BaseViewModelImplementation<T> extends BaseViewModel<T> {
       super.rebuild();
     }
   }
-
-  @override
-  double get textScaleFactor {
-    if (_isMock) return stubbedTextScaleFactor;
-    return super.textScaleFactor;
-  }
-
-  @override
-  double get width {
-    if (_isMock) return stubbedCurrentWidth;
-    return super.width;
-  }
-
-  @override
-  double get height {
-    if (_isMock) return stubbedCurrentHeight;
-    return super.height;
-  }
 }

@@ -115,8 +115,8 @@ class FirstVetoView extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       'First Veto View',
-                                                      style: model
-                                                          .textTheme.headline5!
+                                                      style: model.textTheme
+                                                          .headlineSmall!
                                                           .copyWith(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -125,7 +125,7 @@ class FirstVetoView extends StatelessWidget {
                                                     Text(
                                                       'Made by Yyhwach_ and me',
                                                       style: model
-                                                          .textTheme.subtitle2!
+                                                          .textTheme.titleSmall!
                                                           .copyWith(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -159,7 +159,7 @@ class FirstVetoView extends StatelessWidget {
                                                                   style: Theme.of(
                                                                           context)
                                                                       .textTheme
-                                                                      .bodyText1!
+                                                                      .bodyLarge!
                                                                       .copyWith(
                                                                         fontWeight:
                                                                             FontWeight.bold,
@@ -170,7 +170,7 @@ class FirstVetoView extends StatelessWidget {
                                                                   style: Theme.of(
                                                                           context)
                                                                       .textTheme
-                                                                      .headline4,
+                                                                      .headlineMedium,
                                                                 ),
                                                               ],
                                                             ),
@@ -196,7 +196,7 @@ class FirstVetoView extends StatelessWidget {
                                                                     style: Theme.of(
                                                                             context)
                                                                         .textTheme
-                                                                        .bodyText1!
+                                                                        .bodyLarge!
                                                                         .copyWith(
                                                                           fontWeight:
                                                                               FontWeight.bold,
@@ -208,7 +208,7 @@ class FirstVetoView extends StatelessWidget {
                                                                     style: Theme.of(
                                                                             context)
                                                                         .textTheme
-                                                                        .headline4,
+                                                                        .headlineMedium,
                                                                   ),
                                                                 ],
                                                               ),
@@ -352,7 +352,7 @@ class FirstVetoView extends StatelessWidget {
                                                       child: Text(
                                                         'Trigger Busy',
                                                         style: model.textTheme
-                                                            .bodyText1!
+                                                            .bodyLarge!
                                                             .copyWith(
                                                                 color: Colors
                                                                     .black),
@@ -472,7 +472,7 @@ class FirstVetoView extends StatelessWidget {
                                                                       .center,
                                                               style: model
                                                                   .textTheme
-                                                                  .subtitle2!
+                                                                  .titleSmall!
                                                                   .copyWith(
                                                                       color: Colors
                                                                           .white),
@@ -590,7 +590,7 @@ class FirstVetoViewModel extends BaseViewModel {
 
   /// Pushes the second view with counter arguments.
   void pushSecondView() {
-    Navigator.of(context).push(
+    Navigator.of(context!).push(
       MaterialPageRoute(
         builder: (context) => SecondVetoView(
           secondVetoViewArguments: SecondVetoViewArguments(
@@ -632,6 +632,52 @@ class FirstVetoViewModel extends BaseViewModel {
   void removeError() => setError(false);
 
   void _log(Object message) => debugPrint('💡 [INFO] $message');
+
+  /// Provides the current [ViewModelBuilderState]'s [ThemeData].
+  ThemeData get theme => Theme.of(context!);
+
+  /// Provides the current [ViewModelBuilderState]'s [TextTheme].
+  TextTheme get textTheme => Theme.of(context!).textTheme;
+
+  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData].
+  MediaQueryData get media => MediaQuery.of(context!);
+
+  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData.textScaleFactor].
+  double get textScaleFactor => MediaQuery.of(context!).textScaleFactor;
+
+  /// Provides a scaled value based on given [value] and [textScaleFactor].
+  double textScaled({required double value, BuildContext? context}) =>
+      value *
+      (context == null
+          ? textScaleFactor
+          : MediaQuery.textScaleFactorOf(context));
+
+  /// Provides the current [ViewModelBuilderState]'s [FocusNode].
+  FocusNode get focusNode => FocusScope.of(context!);
+
+  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData]'s [Size.width].
+  double get width => MediaQuery.of(context!).size.width;
+
+  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData]'s [Size.height].
+  double get height => MediaQuery.of(context!).size.height;
+
+  /// Provides a design scaled value based on given [value], [width] and given [originalDesignWidth].
+  ///
+  /// Where [originalDesignWidth] is the width of the screen in your original UI design file.
+  double scaledWidth({
+    required double value,
+    required double originalDesignWidth,
+  }) =>
+      value * (width / originalDesignWidth);
+
+  /// Provides a design scaled value based on given [value], [height] and given [originalDesignHeight].
+  ///
+  /// Where [originalDesignHeight] is the height of the screen in your original UI design file.
+  double scaledHeight({
+    required double value,
+    required double originalDesignHeight,
+  }) =>
+      value * (height / originalDesignHeight);
 
   static FirstVetoViewModel get locate => FirstVetoViewModel();
 }

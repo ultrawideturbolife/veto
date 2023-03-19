@@ -35,9 +35,9 @@ class SecondVetoView extends StatelessWidget {
                   Text(
                     'Second Veto View',
                     textAlign: TextAlign.center,
-                    style: model.textTheme.headline5!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 32),
                   ValueListenableBuilder<int>(

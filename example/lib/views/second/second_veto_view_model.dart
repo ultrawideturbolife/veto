@@ -22,13 +22,12 @@ class SecondVetoViewModel extends BaseViewModel<SecondVetoViewArguments> {
     _log('Initialised!');
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   /// Returns to [FirstVetoView].
-  void goBack() => Navigator.of(context).pop();
+  void goBack() {
+    if (context != null) {
+      Navigator.of(context!).pop();
+    }
+  }
 
   void _log(Object message) => debugPrint('💡 [INFO] $message');
 

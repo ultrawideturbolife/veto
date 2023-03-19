@@ -1,3 +1,8 @@
+## 0.0.3
+
+* **⚠️ Breaking:** Made the `BaseViewModel.context` getter nullable to better reflect actual logic.
+* **⚠️ Breaking:** Removed all context related helper methods. Suggest to add these methods to a context extension yourself for easy fix and access.
+
 ## 0.0.2
 
 * **⚠️ Breaking:** Refactor `BaseViewModel.isMounted` to function instead of callback.

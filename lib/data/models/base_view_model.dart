@@ -126,53 +126,7 @@ abstract class BaseViewModel<E extends Object?> {
   void rebuild() => _rebuild?.call(() {});
 
   /// Provides the current [ViewModelBuilderState]'s [BuildContext].
-  BuildContext get context => _disposableBuildContext!.context!;
-
-  /// Provides the current [ViewModelBuilderState]'s [ThemeData].
-  ThemeData get theme => Theme.of(context);
-
-  /// Provides the current [ViewModelBuilderState]'s [TextTheme].
-  TextTheme get textTheme => Theme.of(context).textTheme;
-
-  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData].
-  MediaQueryData get media => MediaQuery.of(context);
-
-  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData.textScaleFactor].
-  double get textScaleFactor => MediaQuery.of(context).textScaleFactor;
-
-  /// Provides a scaled value based on given [value] and [textScaleFactor].
-  double textScaled({required double value, BuildContext? context}) =>
-      value *
-      (context == null
-          ? textScaleFactor
-          : MediaQuery.textScaleFactorOf(context));
-
-  /// Provides the current [ViewModelBuilderState]'s [FocusNode].
-  FocusNode get focusNode => FocusScope.of(context);
-
-  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData]'s [Size.width].
-  double get width => MediaQuery.of(context).size.width;
-
-  /// Provides the current [ViewModelBuilderState]'s [MediaQueryData]'s [Size.height].
-  double get height => MediaQuery.of(context).size.height;
-
-  /// Provides a design scaled value based on given [value], [width] and given [originalDesignWidth].
-  ///
-  /// Where [originalDesignWidth] is the width of the screen in your original UI design file.
-  double scaledWidth({
-    required double value,
-    required double originalDesignWidth,
-  }) =>
-      value * (width / originalDesignWidth);
-
-  /// Provides a design scaled value based on given [value], [height] and given [originalDesignHeight].
-  ///
-  /// Where [originalDesignHeight] is the height of the screen in your original UI design file.
-  double scaledHeight({
-    required double value,
-    required double originalDesignHeight,
-  }) =>
-      value * (height / originalDesignHeight);
+  BuildContext? get context => _disposableBuildContext?.context;
 
   /// Helper method to call a [Future.delayed] with given [milliseconds].
   Future<void> wait(int milliseconds) async =>
