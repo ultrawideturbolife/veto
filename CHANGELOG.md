@@ -1,3 +1,7 @@
+## 0.0.3+1
+
+* Improved isMounted logic.
+
 ## 0.0.3
 
 * **⚠️ Breaking:** Made the `BaseViewModel.context` getter nullable to better reflect actual logic.

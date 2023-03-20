@@ -603,10 +603,8 @@ class FirstVetoViewModel extends BaseViewModel {
   }
 
   /// Updates the current mounted status to [_mountedStatus] for demonstration purposes.
-  void updateMountedStatus() =>
-      _mountedStatus.value = (isMounted?.call() ?? false)
-          ? MountedStatus.mounted
-          : MountedStatus.unmounted;
+  void updateMountedStatus() => _mountedStatus.value =
+      isMounted ? MountedStatus.mounted : MountedStatus.unmounted;
 
   /// Triggers the busy state for demonstration purposes.
   void triggerBusy() {

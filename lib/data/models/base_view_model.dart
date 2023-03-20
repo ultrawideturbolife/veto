@@ -14,7 +14,10 @@ abstract class BaseViewModel<E extends Object?> {
   late Function(VoidCallback fn)? _rebuild;
 
   /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
-  late bool Function()? isMounted;
+  late bool Function()? _mounted;
+
+  /// Whether the parent [ViewModelBuilder] is mounted.
+  bool get isMounted => _mounted?.call() ?? false;
 
   /// Provides non-leaking access to the [context].
   late DisposableBuildContext? _disposableBuildContext;
@@ -72,7 +75,7 @@ abstract class BaseViewModel<E extends Object?> {
   void dispose() {
     _disposableBuildContext!.dispose();
     _disposableBuildContext = null;
-    isMounted = null;
+    _mounted = null;
     _rebuild = null;
   }
 
