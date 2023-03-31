@@ -1,3 +1,7 @@
+## 0.0.3+2
+
+* Improve readme
+
 ## 0.0.3+1
 
 * Improved isMounted logic.
