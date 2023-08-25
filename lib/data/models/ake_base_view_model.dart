@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:veto/data/enums/view_model_state.dart';
 
-part '/../widgets/ake_view_model_builder.dart';
+part '../../widgets/ake_view_model_builder.dart';
 
 /// Base view model class.
 abstract class AkeBaseViewModel<E extends Object?> {

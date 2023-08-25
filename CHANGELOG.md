@@ -1,3 +1,7 @@
+## 0.0.4+2
+
+* **🐛️ Bugfix:** Fixed part of `AkeViewModelBuilder`.
+
 ## 0.0.4+1
 
 * **🐛️ Bugfix:** Fixed naming of `AkeViewModelBuilder`.
