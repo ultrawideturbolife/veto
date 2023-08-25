@@ -1,3 +1,12 @@
+## 0.0.4+1
+
+* **🐛️ Bugfix:** Fixed naming of `AkeViewModelBuilder`.
+
+## 0.0.4
+
+* **✨ New:** Added `AutomaticKeepAliveClientMixin` to `AkeViewModelBuilder`.
+* **✨ New:** Added `AkeBaseViewModel`.
+
 ## 0.0.3+2
 
 * Improve readme
