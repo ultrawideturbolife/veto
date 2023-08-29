@@ -7,11 +7,9 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
     required T Function() viewModelBuilder,
     Object? Function()? argumentBuilder,
     Key? key,
-    final bool keepAlive = true,
   })  : _builder = builder,
         _viewModelBuilder = viewModelBuilder,
         _argumentBuilder = argumentBuilder,
-        _keepAlive = keepAlive,
         super(key: key);
 
   /// Builder method that builds the widget tree.
@@ -23,14 +21,12 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
   /// Builder method that provides the [BaseViewModel.initialise] with arguments.
   final dynamic Function()? _argumentBuilder;
 
-  final bool _keepAlive;
-
   @override
   ViewModelBuilderState<T> createState() => ViewModelBuilderState<T>();
 }
 
 class ViewModelBuilderState<T extends BaseViewModel>
-    extends State<ViewModelBuilder<T>> with AutomaticKeepAliveClientMixin {
+    extends State<ViewModelBuilder<T>> {
   /// The current [BaseViewModel].
   late final T _viewModel;
 
@@ -54,11 +50,5 @@ class ViewModelBuilderState<T extends BaseViewModel>
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return widget._builder(context, _viewModel);
-  }
-
-  @override
-  bool get wantKeepAlive => widget._keepAlive;
+  Widget build(BuildContext context) => widget._builder(context, _viewModel);
 }

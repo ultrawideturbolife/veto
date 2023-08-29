@@ -7,9 +7,11 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
     required T Function() viewModelBuilder,
     Object? Function()? argumentBuilder,
     Key? key,
+    final bool keepAlive = true,
   })  : _builder = builder,
         _viewModelBuilder = viewModelBuilder,
         _argumentBuilder = argumentBuilder,
+        _keepAlive = keepAlive,
         super(key: key);
 
   /// Builder method that builds the widget tree.
@@ -21,12 +23,14 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   /// Builder method that provides the [AkeBaseViewModel.initialise] with arguments.
   final dynamic Function()? _argumentBuilder;
 
+  final bool _keepAlive;
+
   @override
   AkeViewModelBuilderState<T> createState() => AkeViewModelBuilderState<T>();
 }
 
 class AkeViewModelBuilderState<T extends AkeBaseViewModel>
-    extends State<AkeViewModelBuilder<T>> {
+    extends State<AkeViewModelBuilder<T>> with AutomaticKeepAliveClientMixin {
   /// The current [AkeBaseViewModel].
   late final T _viewModel;
 
@@ -50,5 +54,11 @@ class AkeViewModelBuilderState<T extends AkeBaseViewModel>
   }
 
   @override
-  Widget build(BuildContext context) => widget._builder(context, _viewModel);
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget._builder(context, _viewModel);
+  }
+
+  @override
+  bool get wantKeepAlive => widget._keepAlive;
 }
