@@ -1,0 +1,51 @@
+import 'package:flutter/foundation.dart';
+import 'package:veto/services/busy_service.dart';
+import 'package:veto/data/models/busy_model.dart';
+import '../enums/busy_type.dart';
+
+/// Mixin to manage the busy state using [BusyService].
+///
+/// Provides utilities to set the busy state with optional title, message,
+/// minimum duration and busy type. Also exposes getters for busy title,
+/// busy message and busy state itself.
+mixin BusyServiceManagement {
+  /// Instance of [BusyService].
+  final BusyService _busyService = BusyService.instance();
+
+  /// Sets the busy state.
+  ///
+  /// [isBusy] The new busy state.
+  /// [busyTitle] Optional title for the busy state.
+  /// [busyMessage] Optional message for the busy state.
+  /// [minBusyDuration] Minimum duration to remain in busy state. Default is [Duration.zero].
+  /// [busyType] Optional busy type. Default is `null`.
+  void setBusy(
+    bool isBusy, {
+    String? busyTitle,
+    String? busyMessage,
+    Duration minBusyDuration = Duration.zero,
+    BusyType? busyType,
+  }) =>
+      _busyService.setBusy(
+        isBusy,
+        busyTitle: busyTitle,
+        busyMessage: busyMessage,
+        minBusyDuration: minBusyDuration,
+        busyType: busyType,
+      );
+
+  /// Sets the busy state to idle.
+  void setIdle() => _busyService.setBusy(false);
+
+  /// Getter for the busy title.
+  String? get busyTitle => _busyService.isBusy.value.busyTitle;
+
+  /// Getter for the busy message.
+  String? get busyMessage => _busyService.isBusy.value.busyMessage;
+
+  /// ValueListenable for the busy state.
+  ValueListenable<BusyModel> get isBusy => _busyService.isBusy;
+
+  /// Dispose the [BusyService] used in this mixin.
+  void disposeBusyManagement() => _busyService.dispose();
+}

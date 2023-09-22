@@ -1,20 +1,21 @@
 name: veto
-description: A lightweight MVVM state management solution inspired by the FilledStacks stacked package.
-version: 0.0.4+3
+description: A lightweight MVVM state management solution inspired by the FilledStacks Stacked package.
+version: 0.0.5
 homepage: https://github.com/codaveto/veto
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: '>=3.0.6 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.2
+  flutter_lints: ^2.0.3
   gherkin_unit_test: ^0.0.5
   gherkin_integration_test: ^0.0.5
 

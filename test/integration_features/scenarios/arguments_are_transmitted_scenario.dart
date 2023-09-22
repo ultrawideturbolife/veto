@@ -30,7 +30,8 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
                   ViewModelBuilder<BaseViewModelImplementation>(
                     argumentBuilder: () =>
                         const _DummyArguments(cookieType: _argument),
-                    builder: (context, model) => const SizedBox(),
+                    builder: (context, model, isInitialised, child) =>
+                        const SizedBox(),
                     viewModelBuilder: () =>
                         box.read<BaseViewModelImplementation>(#baseViewModel),
                   ),

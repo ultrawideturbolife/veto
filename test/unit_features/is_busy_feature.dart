@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gherkin_unit_test/unit_test.dart';
-import 'package:veto/data/enums/view_model_state.dart';
 
 import '../models/base_view_model_implementation.dart';
 
@@ -19,7 +18,6 @@ class IsBusyFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, false);
                     log.success('BaseViewModel was not busy');
-                    box.write(#startingState, systemUnderTest.state);
                   },
                 ),
                 When(
@@ -33,8 +31,6 @@ class IsBusyFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, true);
                     log.success('Boolean status was busy!');
-                    expect(systemUnderTest.state, ViewModelState.isBusy);
-                    log.success('ViewModelState was busy!');
                   },
                 ),
                 When(
@@ -48,8 +44,6 @@ class IsBusyFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.isBusy, false);
                     log.success('BaseViewModel was not busy!');
-                    expect(systemUnderTest.state, box.read(#startingState));
-                    log.success('ViewModelState was restored!');
                   },
                 )
               ],

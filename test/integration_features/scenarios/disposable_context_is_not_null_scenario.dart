@@ -25,7 +25,8 @@ class DisposableContextIsNotNullScenario extends IntegrationScenario {
               (tester, log, box, mocks, [example, binding]) async {
                 await tester.pumpWidget(
                   ViewModelBuilder<BaseViewModelImplementation>(
-                    builder: (context, model) => const SizedBox(),
+                    builder: (context, model, isInitialised, child) =>
+                        const SizedBox(),
                     viewModelBuilder: () => box.read(#baseViewModel),
                   ),
                 );

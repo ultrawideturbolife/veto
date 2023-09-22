@@ -19,7 +19,7 @@ class SecondVetoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SecondVetoViewModel>(
       argumentBuilder: () => _secondVetoViewArguments,
-      builder: (context, model) {
+      builder: (context, model, isInitialised, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Veto Test App'),

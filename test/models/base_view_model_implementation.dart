@@ -1,6 +1,9 @@
 import 'package:veto/data/models/base_view_model.dart';
+import 'package:veto/data/mixins/busy_management.dart';
+import 'package:veto/data/mixins/error_management.dart';
 
-class BaseViewModelImplementation<T> extends BaseViewModel<T> {
+class BaseViewModelImplementation<T> extends BaseViewModel<T>
+    with ErrorManagement, BusyManagement {
   BaseViewModelImplementation({
     required bool isMock,
   }) : _isMock = isMock;

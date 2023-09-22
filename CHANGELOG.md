@@ -1,3 +1,15 @@
+## 0.0.5
+
+* **⚠️ Breaking/New:** Reimplemented provider package to allow for use of its benefits.
+* **⚠️ Breaking/New:** Made BaseViewModel a ChangeNotifier again.
+* **⚠️ Breaking/New:** Added isReactive, onDispose and shouldDispose arguments to ViewModelBuilder.
+* **⚠️ Breaking/New:** Moved error and busy logic to mixins ErrorManagement and BusyManagement.
+* **⚠️ Breaking/New:** Moved BaseViewModel helper methods to ViewModelHelpers.
+* **⚠️ Breaking/New:** Introduced new BusyService lazy singleton and BusyModel which allow to show busy indicators through overlays from anywhere in the app.
+* **⚠️ Breaking/New:** Added BusyServiceManagement mixin to allow for easy use of the BusyService.
+* **⚠️ Breaking/New:** Integrated the isInitialised notifier into the ViewModelBuilder.
+* **⚠️ Breaking/New:** Introduced BaseViewModel setInitialised to allow for manual control of the isInitialised notifier.
+
 ## 0.0.4+3
 
 * **🐛️ Bugfix:** Fixed `Ake` classes.

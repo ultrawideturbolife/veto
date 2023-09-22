@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gherkin_unit_test/unit_test.dart';
-import 'package:veto/data/enums/view_model_state.dart';
 
 import '../models/base_view_model_implementation.dart';
 
@@ -19,7 +18,6 @@ class HasErrorFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.hasError, false);
                     log.success('BaseViewModel did not have an error');
-                    box.write(#startingState, systemUnderTest.state);
                   },
                 ),
                 When(
@@ -33,8 +31,6 @@ class HasErrorFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.hasError, true);
                     log.success('Error status was true!');
-                    expect(systemUnderTest.state, ViewModelState.hasError);
-                    log.success('ViewModelState was hasError!');
                   },
                 ),
                 When(
@@ -48,8 +44,6 @@ class HasErrorFeature extends UnitFeature {
                   (systemUnderTest, log, box, mocks, [example]) {
                     expect(systemUnderTest.hasError, false);
                     log.success('BaseViewModel did not have an error!');
-                    expect(systemUnderTest.state, box.read(#startingState));
-                    log.success('ViewModelState was restored!');
                   },
                 )
               ],
