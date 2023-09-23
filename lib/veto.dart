@@ -12,3 +12,5 @@ export 'data/models/base_view_model.dart';
 export 'data/models/busy_model.dart';
 
 export 'services/busy_service.dart';
+
+export 'widgets/view_model_widget.dart';

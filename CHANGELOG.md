@@ -1,3 +1,7 @@
+## 0.0.5+2
+
+* **🐛️ Bugfix:** Update exports.
+
 ## 0.0.5+1
 
 * **✨ New:** Added the ViewModelWidget as designed in the Stacked package.
