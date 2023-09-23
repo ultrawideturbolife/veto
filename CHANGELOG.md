@@ -1,3 +1,7 @@
+## 0.0.5+3
+
+* **🐛️ Bugfix:** Rename viewModel to model in ViewModelWidget.
+
 ## 0.0.5+2
 
 * **🐛️ Bugfix:** Update exports.

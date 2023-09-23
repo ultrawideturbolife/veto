@@ -11,9 +11,9 @@ abstract class ViewModelWidget<T> extends Widget {
   /// Determines whether the widget should rebuild when changes occur in [T].
   final bool isReactive;
 
-  /// Builds the UI from the given [viewModel].
+  /// Builds the UI from the given [model].
   @protected
-  Widget build(BuildContext context, T viewModel);
+  Widget build(BuildContext context, T model);
 
   /// Creates a new [DataProviderElement].
   @override
