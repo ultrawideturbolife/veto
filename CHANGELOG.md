@@ -1,3 +1,7 @@
+## 0.0.5+1
+
+* **✨ New:** Added the ViewModelWidget as designed in the Stacked package.
+
 ## 0.0.5
 
 * **⚠️ Breaking/New:** Reimplemented provider package to allow for use of its benefits.
