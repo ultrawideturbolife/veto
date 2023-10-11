@@ -16,7 +16,7 @@ abstract class BaseViewModel<E extends Object?> extends ChangeNotifier {
   bool get isMounted => _mounted?.call() ?? false;
 
   /// Provides non-leaking access to the [context].
-  late DisposableBuildContext? _disposableBuildContext;
+  late DisposableBuildContext? disposableBuildContext;
 
   /// Sets whether the [BaseViewModel] has been initialised.
   void setInitialised(bool value) => _isInitialised.value = value;
@@ -38,8 +38,8 @@ abstract class BaseViewModel<E extends Object?> extends ChangeNotifier {
   /// This method is called in the [ViewModelBuilderState.initState] method.
   @override
   void dispose() {
-    _disposableBuildContext!.dispose();
-    _disposableBuildContext = null;
+    disposableBuildContext!.dispose();
+    disposableBuildContext = null;
     _mounted = null;
     super.dispose();
   }
@@ -48,5 +48,5 @@ abstract class BaseViewModel<E extends Object?> extends ChangeNotifier {
   void rebuild() => notifyListeners();
 
   /// Provides the current [ViewModelBuilderState]'s [BuildContext].
-  BuildContext? get context => _disposableBuildContext?.context;
+  BuildContext? get context => disposableBuildContext?.context;
 }

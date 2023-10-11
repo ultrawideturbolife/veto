@@ -57,7 +57,7 @@ class ViewModelBuilderState<T extends BaseViewModel>
   @override
   void initState() {
     _viewModel = widget._viewModelBuilder()
-      .._disposableBuildContext = DisposableBuildContext(this)
+      ..disposableBuildContext = DisposableBuildContext(this)
       .._mounted = (() => mounted)
       ..arguments = widget._argumentBuilder?.call();
     _viewModel.initialise();

@@ -1,3 +1,7 @@
+## 0.0.5+4
+
+* **✨ New:** Made `_disposableBuildContext` public.
+
 ## 0.0.5+3
 
 * **🐛️ Bugfix:** Rename viewModel to model in ViewModelWidget.
