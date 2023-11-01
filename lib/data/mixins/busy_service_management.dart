@@ -38,16 +38,16 @@ mixin BusyServiceManagement {
   void setIdle() => _busyService.setBusy(false);
 
   /// Getter for the busy title.
-  String? get busyTitle => _busyService.isBusy.value.busyTitle;
+  String? get busyTitle => _busyService.isBusyListenable.value.busyTitle;
 
   /// Getter for the busy message.
-  String? get busyMessage => _busyService.isBusy.value.busyMessage;
+  String? get busyMessage => _busyService.isBusyListenable.value.busyMessage;
 
   /// ValueListenable for the busy state.
-  ValueListenable<BusyModel> get isBusyListenable => _busyService.isBusy;
+  ValueListenable<BusyModel> get isBusyListenable => _busyService.isBusyListenable;
 
   /// Getter for the busy state.
-  bool get isBusy => _busyService.isBusy.value.isBusy;
+  bool get isBusy => _busyService.isBusy;
 
   /// Dispose the [BusyService] used in this mixin.
   void disposeBusyManagement() => _busyService.dispose();

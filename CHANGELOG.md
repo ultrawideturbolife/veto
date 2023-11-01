@@ -1,7 +1,7 @@
-## 0.0.5+5
+## 0.0.6
 
-* **⚠️ Breaking:** Renamed `isBusy` to `isBusyListenable` in `BusyServiceManagement` mixin.
-* **✨ New:** Add `isBusy` bool getter to `BusyServiceManagement` mixin.
+* **⚠️ Breaking:** Renamed `isBusy` to `isBusyListenable` in `BusyServiceManagement` mixin and `BusyService`.
+* **✨ New:** Add `isBusy` bool getter to `BusyServiceManagement` mixin and `BusyService`.
 
 ## 0.0.5+4
 

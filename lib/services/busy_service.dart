@@ -11,16 +11,20 @@ class BusyService {
   BusyService._();
   static BusyService? _instance;
 
-  /// Returns an instance of [BusyService] and sets the default [BusyType] if provided.
-  static BusyService instance({BusyType? defaultBusyType}) {
-    if (defaultBusyType != null) {
-      _defaultBusyType = defaultBusyType;
-    }
-    return _instance ??= BusyService._();
+  // 🎬 INIT & DISPOSE ------------------------------------------------------------------------ \\
+
+  /// Disposes resources held by [BusyService].
+  void dispose() {
+    _allowUpdateTimer?.cancel();
+    _isBusyNotifier.dispose();
+    _mutex.dispose();
+    _instance = null;
   }
 
+  // 🎩 STATE --------------------------------------------------------------------------------- \\
+
   static BusyType _defaultBusyType = BusyType.indicator;
-  final _isBusy = ValueNotifier<BusyModel>(
+  final _isBusyNotifier = ValueNotifier<BusyModel>(
     BusyModel(
       isBusy: false,
       busyType: _defaultBusyType,
@@ -29,19 +33,20 @@ class BusyService {
     ),
   );
 
-  ValueListenable<BusyModel> get isBusy => _isBusy;
   Timer? _allowUpdateTimer;
   int _isBusies = 0;
   int _isNotBusies = 0;
+
+  // 🛠 UTIL ---------------------------------------------------------------------------------- \\
+
   final _mutex = _Mutex();
 
-  /// Disposes resources held by [BusyService].
-  void dispose() {
-    _allowUpdateTimer?.cancel();
-    _isBusy.dispose();
-    _mutex.dispose();
-    _instance = null;
-  }
+  // 🧲 FETCHERS ------------------------------------------------------------------------------ \\
+
+  bool get isBusy => _isBusyNotifier.value.isBusy;
+  ValueListenable<BusyModel> get isBusyListenable => _isBusyNotifier;
+
+  // 🪄 MUTATORS ------------------------------------------------------------------------------ \\
 
   /// Sets the busy state of the application.
   void setBusy(
@@ -100,6 +105,8 @@ class BusyService {
     }
   }
 
+  // 🏗️ HELPERS ------------------------------------------------------------------------------- \\
+
   /// Sets the busy state in the ValueNotifier
   void _setBusy({
     required bool isBusy,
@@ -107,12 +114,22 @@ class BusyService {
     required String? busyTitle,
     required BusyType busyType,
   }) =>
-      _isBusy.value = BusyModel(
+      _isBusyNotifier.value = BusyModel(
         isBusy: isBusy,
         busyTitle: isBusy ? busyTitle : null,
         busyMessage: isBusy ? busyMessage : null,
         busyType: busyType,
       );
+
+  // 📍 LOCATOR ------------------------------------------------------------------------------- \\
+
+  /// Returns an instance of [BusyService] and sets the default [BusyType] if provided.
+  static BusyService instance({BusyType? defaultBusyType}) {
+    if (defaultBusyType != null) {
+      _defaultBusyType = defaultBusyType;
+    }
+    return _instance ??= BusyService._();
+  }
 }
 
 /// A private class to implement a mutex.
