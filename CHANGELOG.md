@@ -1,3 +1,8 @@
+## 0.0.5+5
+
+* **⚠️ Breaking:** Renamed `isBusy` to `isBusyListenable` in `BusyServiceManagement` mixin.
+* **✨ New:** Add `isBusy` bool getter to `BusyServiceManagement` mixin.
+
 ## 0.0.5+4
 
 * **✨ New:** Made `_disposableBuildContext` public.

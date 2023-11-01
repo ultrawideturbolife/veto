@@ -44,7 +44,10 @@ mixin BusyServiceManagement {
   String? get busyMessage => _busyService.isBusy.value.busyMessage;
 
   /// ValueListenable for the busy state.
-  ValueListenable<BusyModel> get isBusy => _busyService.isBusy;
+  ValueListenable<BusyModel> get isBusyListenable => _busyService.isBusy;
+
+  /// Getter for the busy state.
+  bool get isBusy => _busyService.isBusy.value.isBusy;
 
   /// Dispose the [BusyService] used in this mixin.
   void disposeBusyManagement() => _busyService.dispose();
