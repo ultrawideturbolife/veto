@@ -1,3 +1,7 @@
+## 0.0.7
+
+* **⚠️ Breaking:** Made `BaseViewModel.arguments` non nullable.
+
 ## 0.0.6
 
 * **⚠️ Breaking:** Renamed `isBusy` to `isBusyListenable` in `BusyServiceManagement` mixin and `BusyService`.

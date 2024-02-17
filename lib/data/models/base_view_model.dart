@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 part '../../widgets/view_model_builder.dart';
 
 /// Base view model class.
-abstract class BaseViewModel<E extends Object?> extends ChangeNotifier {
-  /// Holds arguments of type [E] provided by the [ViewModelBuilder._argumentBuilder].
-  late final E? arguments;
+abstract class BaseViewModel<A> extends ChangeNotifier {
+  /// Holds arguments of type [A] provided by the [ViewModelBuilder._argumentBuilder].
+  late final A arguments;
 
   /// Callback that is used by [isMounted] to check whether the parent [ViewModelBuilder] is mounted.
   late bool Function()? _mounted;
