@@ -15,7 +15,7 @@ class SecondVetoViewModel extends BaseViewModel<SecondVetoViewArguments> {
   @override
   Future<void> initialise() async {
     _log('Initialising..');
-    final secondVetoViewArguments = arguments!;
+    final secondVetoViewArguments = arguments;
     _firstValue.value = secondVetoViewArguments.firstCounterValue;
     _secondValue.value = secondVetoViewArguments.secondCounterValue;
     super.initialise();

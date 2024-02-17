@@ -1,3 +1,7 @@
+## 0.0.7+1
+
+* **🐛️ Bugfix:** Fixed `BaseViewModel.arguments` to be nullable again.
+
 ## 0.0.7
 
 * **⚠️ Breaking:** Made `BaseViewModel.arguments` non nullable.
