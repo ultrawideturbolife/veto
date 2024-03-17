@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +39,7 @@ abstract class BaseViewModel<A> extends ChangeNotifier {
   ///
   /// This method is called in the [ViewModelBuilderState.initState] method.
   @override
-  void dispose() {
+  FutureOr dispose() {
     disposableBuildContext!.dispose();
     disposableBuildContext = null;
     _mounted = null;

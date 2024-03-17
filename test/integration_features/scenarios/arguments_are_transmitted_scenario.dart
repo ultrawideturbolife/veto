@@ -10,13 +10,15 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
 
   ArgumentsAreTransmittedScenario()
       : super(
-          description: 'Testing the arguments functionality of the ViewModelBuilder',
+          description:
+              'Testing the arguments functionality of the ViewModelBuilder',
           steps: [
             Given(
               'The BaseViewModel is built',
               (tester, log, box, mocks, [example, binding]) async {
                 log.info('Building the BaseViewModel..');
-                final baseViewModel = BaseViewModelImplementation<_DummyArguments>(isMock: false);
+                final baseViewModel =
+                    BaseViewModelImplementation<_DummyArguments>(isMock: false);
                 log.success('BaseViewModel built!');
                 box.write(#baseViewModel, baseViewModel);
               },
@@ -26,9 +28,12 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
               (tester, log, box, mocks, [example, binding]) async {
                 await tester.pumpWidget(
                   ViewModelBuilder<BaseViewModelImplementation>(
-                    argumentBuilder: () => const _DummyArguments(cookieType: _argument),
-                    builder: (context, model, isInitialised, child) => const SizedBox(),
-                    viewModelBuilder: () => box.read<BaseViewModelImplementation>(#baseViewModel),
+                    argumentBuilder: () =>
+                        const _DummyArguments(cookieType: _argument),
+                    builder: (context, model, isInitialised, child) =>
+                        const SizedBox(),
+                    viewModelBuilder: () =>
+                        box.read<BaseViewModelImplementation>(#baseViewModel),
                   ),
                 );
                 await tester.pumpAndSettle();
@@ -39,7 +44,8 @@ class ArgumentsAreTransmittedScenario extends IntegrationScenario {
               (tester, log, box, mocks, [example, binding]) {
                 expect(
                   box
-                      .read<BaseViewModelImplementation<_DummyArguments>>(#baseViewModel)
+                      .read<BaseViewModelImplementation<_DummyArguments>>(
+                          #baseViewModel)
                       .arguments
                       .cookieType,
                   _argument,

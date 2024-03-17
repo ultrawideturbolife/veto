@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +18,7 @@ abstract class AkeBaseViewModel<E extends Object?> extends ChangeNotifier {
   bool get isMounted => _mounted?.call() ?? false;
 
   /// Provides non-leaking access to the [context].
-  late DisposableBuildContext? _disposableBuildContext;
+  late DisposableBuildContext? disposableBuildContext;
 
   /// Sets whether the [BaseViewModel] has been initialised.
   void setInitialised(bool value) => _isInitialised.value = value;
@@ -37,9 +39,9 @@ abstract class AkeBaseViewModel<E extends Object?> extends ChangeNotifier {
   ///
   /// This method is called in the [ViewModelBuilderState.initState] method.
   @override
-  void dispose() {
-    _disposableBuildContext!.dispose();
-    _disposableBuildContext = null;
+  FutureOr dispose() {
+    disposableBuildContext!.dispose();
+    disposableBuildContext = null;
     _mounted = null;
     super.dispose();
   }
@@ -48,5 +50,5 @@ abstract class AkeBaseViewModel<E extends Object?> extends ChangeNotifier {
   void rebuild() => notifyListeners();
 
   /// Provides the current [ViewModelBuilderState]'s [BuildContext].
-  BuildContext? get context => _disposableBuildContext?.context;
+  BuildContext? get context => disposableBuildContext?.context;
 }
