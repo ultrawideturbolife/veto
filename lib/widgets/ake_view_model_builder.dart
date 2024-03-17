@@ -27,9 +27,7 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   final Widget? child;
 
   /// Builder method that builds the widget tree.
-  final Widget Function(
-          BuildContext context, T model, bool isInitialised, Widget? child)
-      _builder;
+  final Widget Function(BuildContext context, T model, bool isInitialised, Widget? child) _builder;
 
   /// Builder method that provides the [AkeBaseViewModel].
   final T Function() _viewModelBuilder;
@@ -44,7 +42,7 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   final bool shouldDispose;
 
   /// Fires when [ViewModelBuilder] is removed from the widget tree.
-  final void Function(T model)? onDispose;
+  final Function(T model)? onDispose;
 
   final bool _keepAlive;
 
@@ -52,8 +50,8 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   AkeViewModelBuilderState<T> createState() => AkeViewModelBuilderState<T>();
 }
 
-class AkeViewModelBuilderState<T extends AkeBaseViewModel>
-    extends State<AkeViewModelBuilder<T>> with AutomaticKeepAliveClientMixin {
+class AkeViewModelBuilderState<T extends AkeBaseViewModel> extends State<AkeViewModelBuilder<T>>
+    with AutomaticKeepAliveClientMixin {
   /// The current [AkeBaseViewModel].
   late final T _viewModel;
 
@@ -70,9 +68,11 @@ class AkeViewModelBuilderState<T extends AkeBaseViewModel>
 
   /// Disposes the [AkeBaseViewModel] and its given methods.
   @override
-  void dispose() async {
+  void dispose() {
     widget.onDispose?.call(_viewModel);
-    _viewModel.dispose();
+    if (widget.shouldDispose) {
+      _viewModel.dispose();
+    }
     super.dispose();
   }
 
@@ -84,17 +84,29 @@ class AkeViewModelBuilderState<T extends AkeBaseViewModel>
       child: widget.child,
       builder: (context, isInitialised, child) {
         if (widget.isReactive) {
-          return ListenableBuilder(
-            listenable: _viewModel,
-            builder: (context, _) => widget._builder(
-              context,
-              _viewModel,
-              isInitialised,
-              child,
+          ChangeNotifierProvider<T>.value(
+            value: _viewModel,
+            child: Consumer<T>(
+              child: child,
+              builder: (context, value, child) => widget._builder(
+                context,
+                value,
+                isInitialised,
+                child,
+              ),
             ),
           );
         }
-        return widget._builder(context, _viewModel, isInitialised, child);
+        return ChangeNotifierProvider<T>.value(
+          value: _viewModel,
+          child: child,
+          builder: (context, child) => widget._builder(
+            context,
+            _viewModel,
+            isInitialised,
+            child,
+          ),
+        );
       },
     );
   }
