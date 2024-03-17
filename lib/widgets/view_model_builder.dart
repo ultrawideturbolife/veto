@@ -69,7 +69,6 @@ class ViewModelBuilderState<T extends BaseViewModel>
   Future<void> dispose() async {
     widget.onDispose?.call(_viewModel);
     _viewModel.dispose();
-    print('''[🐛] [PRINT] [🌟] [ViewModelBuilderState.dispose] [📞] WTF''');
     super.dispose();
   }
 
