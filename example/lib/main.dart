@@ -529,7 +529,7 @@ class FirstVetoViewModel extends BaseViewModel
   }
 
   @override
-  void dispose() {
+  Future<void> dispose() async {
     _valueNotifierCounter.dispose();
     super.dispose();
   }

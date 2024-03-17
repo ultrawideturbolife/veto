@@ -44,7 +44,7 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   final bool shouldDispose;
 
   /// Fires when [ViewModelBuilder] is removed from the widget tree.
-  final Function(T model)? onDispose;
+  final void Function(T model)? onDispose;
 
   final bool _keepAlive;
 
@@ -70,9 +70,9 @@ class AkeViewModelBuilderState<T extends AkeBaseViewModel>
 
   /// Disposes the [AkeBaseViewModel] and its given methods.
   @override
-  Future<void> dispose() async {
-    await widget.onDispose?.call(_viewModel);
-    await _viewModel.dispose();
+  void dispose() async {
+    widget.onDispose?.call(_viewModel);
+    _viewModel.dispose();
     super.dispose();
   }
 

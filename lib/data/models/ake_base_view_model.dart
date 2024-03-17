@@ -39,7 +39,7 @@ abstract class AkeBaseViewModel<E extends Object?> extends ChangeNotifier {
   ///
   /// This method is called in the [ViewModelBuilderState.initState] method.
   @override
-  FutureOr dispose() {
+  void dispose() {
     disposableBuildContext!.dispose();
     disposableBuildContext = null;
     _mounted = null;

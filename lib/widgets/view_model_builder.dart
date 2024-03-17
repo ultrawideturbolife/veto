@@ -42,7 +42,7 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
   final bool shouldDispose;
 
   /// Fires when [ViewModelBuilder] is removed from the widget tree.
-  final FutureOr Function(T model)? onDispose;
+  final void Function(T model)? onDispose;
 
   @override
   ViewModelBuilderState<T> createState() => ViewModelBuilderState<T>();
@@ -67,8 +67,9 @@ class ViewModelBuilderState<T extends BaseViewModel>
   /// Disposes the [BaseViewModel] and its given methods.
   @override
   Future<void> dispose() async {
-    await widget.onDispose?.call(_viewModel);
-    await _viewModel.dispose();
+    widget.onDispose?.call(_viewModel);
+    _viewModel.dispose();
+    print('''[🐛] [PRINT] [🌟] [ViewModelBuilderState.dispose] [📞] WTF''');
     super.dispose();
   }
 
