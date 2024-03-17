@@ -27,7 +27,9 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   final Widget? child;
 
   /// Builder method that builds the widget tree.
-  final Widget Function(BuildContext context, T model, bool isInitialised, Widget? child) _builder;
+  final Widget Function(
+          BuildContext context, T model, bool isInitialised, Widget? child)
+      _builder;
 
   /// Builder method that provides the [AkeBaseViewModel].
   final T Function() _viewModelBuilder;
@@ -50,8 +52,8 @@ class AkeViewModelBuilder<T extends AkeBaseViewModel> extends StatefulWidget {
   AkeViewModelBuilderState<T> createState() => AkeViewModelBuilderState<T>();
 }
 
-class AkeViewModelBuilderState<T extends AkeBaseViewModel> extends State<AkeViewModelBuilder<T>>
-    with AutomaticKeepAliveClientMixin {
+class AkeViewModelBuilderState<T extends AkeBaseViewModel>
+    extends State<AkeViewModelBuilder<T>> with AutomaticKeepAliveClientMixin {
   /// The current [AkeBaseViewModel].
   late final T _viewModel;
 
