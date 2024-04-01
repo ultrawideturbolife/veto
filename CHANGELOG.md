@@ -1,3 +1,7 @@
+## 0.0.9
+
+* **⚠️ Breaking:** Added enum `BusyType.none`.
+
 ## 0.0.8+2
 
 * **🐛️ Bugfix:** Fixed a bug where nonReactive viewmodels would not be disposed properly.

@@ -6,6 +6,9 @@
 /// [indicatorBackdrop] Shows the indicator with a backdrop.
 /// [indicatorBackdropIgnorePointer] Shows the indicator with a backdrop and ignores touch events.
 enum BusyType {
+  /// Shows no indicator
+  none,
+
   /// Shows only the indicator.
   indicator,
 
@@ -24,6 +27,7 @@ enum BusyType {
   /// and `false` otherwise.
   bool get ignorePointer {
     switch (this) {
+      case BusyType.none:
       case BusyType.indicator:
       case BusyType.indicatorBackdrop:
         return false;
@@ -39,6 +43,7 @@ enum BusyType {
   /// and `false` otherwise.
   bool get showBackdrop {
     switch (this) {
+      case BusyType.none:
       case BusyType.indicator:
       case BusyType.indicatorIgnorePointer:
         return false;
