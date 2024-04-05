@@ -1,3 +1,7 @@
+## 0.0.10
+
+* **✨ New:** Fixed a bug where reactive view models would not rebuild because of missing return statement.
+
 ## 0.0.9
 
 * **⚠️ Breaking:** Added enum `BusyType.none`.

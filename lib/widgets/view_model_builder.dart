@@ -80,16 +80,18 @@ class ViewModelBuilderState<T extends BaseViewModel>
         child: widget.child,
         builder: (context, isInitialised, child) {
           if (widget.isReactive) {
-            ChangeNotifierProvider<T>.value(
+            return ChangeNotifierProvider<T>.value(
               value: _viewModel,
               child: Consumer<T>(
                 child: child,
-                builder: (context, value, child) => widget._builder(
-                  context,
-                  value,
-                  isInitialised,
-                  child,
-                ),
+                builder: (context, value, child) {
+                  return widget._builder(
+                    context,
+                    value,
+                    isInitialised,
+                    child,
+                  );
+                },
               ),
             );
           }
