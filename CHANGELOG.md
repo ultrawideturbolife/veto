@@ -1,3 +1,7 @@
+## 0.0.11+2
+
+* **✨ New:** Changed default timeout duration to 10 seconds.
+
 ## 0.0.11+1
 
 * **✨ New:** Changed defaultOnTimeout argument name to onTimeoutDefault.
