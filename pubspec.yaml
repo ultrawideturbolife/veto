@@ -1,6 +1,6 @@
 name: veto
 description: A lightweight MVVM state management solution inspired by the FilledStacks Stacked package.
-version: 0.0.11
+version: 0.0.11+1
 homepage: https://github.com/codaveto/veto
 
 environment:

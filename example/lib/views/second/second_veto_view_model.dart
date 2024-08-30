@@ -22,7 +22,6 @@ class SecondVetoViewModel extends BaseViewModel<SecondVetoViewArguments> {
     _log('Initialised!');
   }
 
-
   /// Returns to [FirstVetoView].
   void goBack() {
     if (context != null) {

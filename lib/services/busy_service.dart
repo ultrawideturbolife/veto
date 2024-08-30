@@ -19,12 +19,12 @@ class BusyService {
     Duration timeoutDurationDefault = kValuesTimeoutDuration,
     String? busyMessageDefault,
     String? busyTitleDefault,
-    VoidCallback? defaultOnTimeout,
+    VoidCallback? onTimeoutDefault,
   }) {
     _busyMessageDefault = busyMessageDefault;
     _busyTitleDefault = busyTitleDefault;
     _busyTypeDefault = busyTypeDefault;
-    _onTimeoutDefault = defaultOnTimeout;
+    _onTimeoutDefault = onTimeoutDefault;
     _timeoutDurationDefault = timeoutDurationDefault;
   }
 

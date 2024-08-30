@@ -1,3 +1,7 @@
+## 0.0.11+1
+
+* **✨ New:** Changed defaultOnTimeout argument name to onTimeoutDefault.
+
 ## 0.0.11
 
 * **⚠️ Breaking:** Deprecated defaultBusyType from the BusyService.instance method.
