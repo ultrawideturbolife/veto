@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:veto/data/constants/k_values.dart';
 import 'package:veto/services/busy_service.dart';
 import 'package:veto/data/models/busy_model.dart';
 import '../enums/busy_type.dart';
@@ -17,14 +18,16 @@ mixin BusyServiceManagement {
   /// [isBusy] The new busy state.
   /// [busyTitle] Optional title for the busy state.
   /// [busyMessage] Optional message for the busy state.
-  /// [minBusyDuration] Minimum duration to remain in busy state. Default is [Duration.zero].
+  /// [minBusyDuration] Minimum duration to remain in busy state. Default is [kValuesMinBusyDuration].
   /// [busyType] Optional busy type. Default is `null`.
   void setBusy(
     bool isBusy, {
     String? busyTitle,
     String? busyMessage,
-    Duration minBusyDuration = Duration.zero,
+    Duration minBusyDuration = kValuesMinBusyDuration,
     BusyType? busyType,
+    Duration timeoutDuration = kValuesTimeoutDuration,
+    VoidCallback? onTimeout,
   }) =>
       _busyService.setBusy(
         isBusy,
@@ -32,6 +35,8 @@ mixin BusyServiceManagement {
         busyMessage: busyMessage,
         minBusyDuration: minBusyDuration,
         busyType: busyType,
+        timeoutDuration: minBusyDuration,
+        onTimeout: onTimeout,
       );
 
   /// Sets the busy state to idle.

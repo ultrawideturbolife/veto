@@ -1,3 +1,9 @@
+## 0.0.11
+
+* **⚠️ Breaking:** Deprecated defaultBusyType from the BusyService.instance method.
+* **✨ New:** Added BusyService.initialise method to initialise defaults for the BusyService.
+* **✨ New:** Added timeout functionality to BusyService.setBusy and BusyService.initialise.
+
 ## 0.0.10
 
 * **✨ New:** Fixed a bug where reactive view models would not rebuild because of missing return statement.

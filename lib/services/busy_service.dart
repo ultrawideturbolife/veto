@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:veto/data/constants/k_values.dart';
 import 'package:veto/data/enums/busy_type.dart';
 import 'package:veto/data/models/busy_model.dart';
 
@@ -13,6 +15,20 @@ class BusyService {
 
   // 🎬 INIT & DISPOSE ------------------------------------------------------------------------ \\
 
+  static void initialise({
+    BusyType busyTypeDefault = BusyType.defaultValue,
+    Duration timeoutDurationDefault = kValuesTimeoutDuration,
+    String? busyMessageDefault,
+    String? busyTitleDefault,
+    VoidCallback? defaultOnTimeout,
+  }) {
+    _busyMessageDefault = busyMessageDefault;
+    _busyTitleDefault = busyTitleDefault;
+    _busyTypeDefault = busyTypeDefault;
+    _onTimeoutDefault = defaultOnTimeout;
+    _timeoutDurationDefault = timeoutDurationDefault;
+  }
+
   /// Disposes resources held by [BusyService].
   void dispose() {
     _allowUpdateTimer?.cancel();
@@ -23,17 +39,23 @@ class BusyService {
 
   // 🎩 STATE --------------------------------------------------------------------------------- \\
 
-  static BusyType _defaultBusyType = BusyType.indicator;
+  static BusyType _busyTypeDefault = BusyType.defaultValue;
+  static Duration _timeoutDurationDefault = kValuesTimeoutDuration;
+  static String? _busyMessageDefault;
+  static String? _busyTitleDefault;
+  static VoidCallback? _onTimeoutDefault;
+
   final _isBusyNotifier = ValueNotifier<BusyModel>(
     BusyModel(
       isBusy: false,
-      busyType: _defaultBusyType,
+      busyType: _busyTypeDefault,
       busyTitle: null,
       busyMessage: null,
     ),
   );
 
   Timer? _allowUpdateTimer;
+  Timer? _timeoutTimer;
   int _isBusies = 0;
   int _isNotBusies = 0;
 
@@ -51,18 +73,22 @@ class BusyService {
   /// Sets the busy state of the application.
   void setBusy(
     bool isBusy, {
-    Duration minBusyDuration = Duration.zero,
+    Duration minBusyDuration = kValuesMinBusyDuration,
     String? busyMessage,
     String? busyTitle,
     BusyType? busyType,
+    Duration? timeoutDuration,
+    VoidCallback? onTimeout,
   }) {
     if (_allowUpdateTimer == null) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => _setBusy(
           isBusy: isBusy,
-          busyMessage: busyMessage,
-          busyTitle: busyTitle,
-          busyType: busyType ?? _defaultBusyType,
+          busyMessage: busyMessage ?? _busyMessageDefault,
+          busyTitle: busyTitle ?? _busyTitleDefault,
+          busyType: busyType ?? _busyTypeDefault,
+          onTimeout: onTimeout ?? _onTimeoutDefault,
+          timeoutDuration: timeoutDuration ?? _timeoutDurationDefault,
         ),
       );
       if (isBusy) {
@@ -75,8 +101,10 @@ class BusyService {
                 (_) => _setBusy(
                   isBusy: isReallyBusy,
                   busyMessage: busyMessage,
-                  busyType: busyType ?? _defaultBusyType,
-                  busyTitle: busyTitle,
+                  busyType: busyType ?? _busyTypeDefault,
+                  busyTitle: busyTitle ?? _busyTitleDefault,
+                  onTimeout: onTimeout ?? _onTimeoutDefault,
+                  timeoutDuration: timeoutDuration ?? _timeoutDurationDefault,
                 ),
               );
               _mutex.lockAndRun(
@@ -113,26 +141,43 @@ class BusyService {
     required String? busyMessage,
     required String? busyTitle,
     required BusyType busyType,
-  }) =>
-      _isBusyNotifier.value = BusyModel(
-        isBusy: isBusy,
-        busyTitle: isBusy ? busyTitle : null,
-        busyMessage: isBusy ? busyMessage : null,
-        busyType: busyType,
+    required Duration timeoutDuration,
+    required VoidCallback? onTimeout,
+  }) {
+    if (isBusy && onTimeout != null) {
+      _timeoutTimer?.cancel();
+      _timeoutTimer = Timer(
+        timeoutDuration,
+        () {
+          onTimeout();
+          _timeoutTimer = null;
+        },
       );
+    } else {
+      _timeoutTimer?.cancel();
+    }
+    _isBusyNotifier.value = BusyModel(
+      isBusy: isBusy,
+      busyTitle: isBusy ? busyTitle : null,
+      busyMessage: isBusy ? busyMessage : null,
+      busyType: busyType,
+    );
+  }
 
   // 📍 LOCATOR ------------------------------------------------------------------------------- \\
 
   /// Returns an instance of [BusyService] and sets the default [BusyType] if provided.
-  static BusyService instance({BusyType? defaultBusyType}) {
+  static BusyService instance({
+    @Deprecated('Use BusyService.initialise instead') BusyType? defaultBusyType,
+  }) {
     if (defaultBusyType != null) {
-      _defaultBusyType = defaultBusyType;
+      _busyTypeDefault = defaultBusyType;
     }
     return _instance ??= BusyService._();
   }
 }
 
-/// A private class to implement a mutex.
+/// A private class to implement a mutex.x
 /// Mutex is implemented to avoid race conditions when setting busy states.
 class _Mutex {
   final _completerQueue = Queue<Completer>();

@@ -21,6 +21,9 @@ enum BusyType {
   /// Shows the indicator with a backdrop and ignores touch events.
   indicatorBackdropIgnorePointer;
 
+  /// Default value for `BusyType`.
+  static const defaultValue = BusyType.indicator;
+
   /// Checks if the current `BusyType` should ignore pointer events.
   ///
   /// Returns `true` for `indicatorIgnorePointer` and `indicatorBackdropIgnorePointer`,
