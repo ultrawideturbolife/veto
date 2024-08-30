@@ -35,7 +35,7 @@ class FirstVetoView extends StatelessWidget {
     return ViewModelBuilder<FirstVetoViewModel>(
       builder: (context, model, isInitialised, child) => MediaQuery(
         data: model.media.copyWith(
-          textScaleFactor: model.textScaleFactor.clamp(1, 1.35),
+          textScaler: TextScaler.linear(model.textScaleFactor.clamp(1, 1.35)),
         ),
         child: Scaffold(
           appBar: AppBar(
@@ -297,7 +297,7 @@ class FirstVetoView extends StatelessWidget {
                                                   ElevatedButton(
                                                     style: ButtonStyle(
                                                         backgroundColor:
-                                                            MaterialStateProperty
+                                                            WidgetStateProperty
                                                                 .all(Colors
                                                                     .pink)),
                                                     onPressed:
@@ -328,7 +328,7 @@ class FirstVetoView extends StatelessWidget {
                                                         ElevatedButton(
                                                           style: ButtonStyle(
                                                               backgroundColor:
-                                                                  MaterialStateProperty
+                                                                  WidgetStateProperty
                                                                       .all(Colors
                                                                           .orange)),
                                                           onPressed: model
@@ -343,7 +343,7 @@ class FirstVetoView extends StatelessWidget {
                                                   ElevatedButton(
                                                     style: ButtonStyle(
                                                         backgroundColor:
-                                                            MaterialStateProperty
+                                                            WidgetStateProperty
                                                                 .all(Colors
                                                                     .yellow)),
                                                     onPressed:
@@ -390,7 +390,7 @@ class FirstVetoView extends StatelessWidget {
                                                                 style:
                                                                     ButtonStyle(
                                                                   backgroundColor:
-                                                                      MaterialStateProperty
+                                                                      WidgetStateProperty
                                                                           .all(
                                                                     Colors
                                                                         .black,
@@ -418,7 +418,7 @@ class FirstVetoView extends StatelessWidget {
                                                                 style:
                                                                     ButtonStyle(
                                                                   backgroundColor:
-                                                                      MaterialStateProperty
+                                                                      WidgetStateProperty
                                                                           .all(
                                                                     Colors
                                                                         .black,

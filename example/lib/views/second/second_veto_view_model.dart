@@ -22,10 +22,6 @@ class SecondVetoViewModel extends BaseViewModel<SecondVetoViewArguments> {
     _log('Initialised!');
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   /// Returns to [FirstVetoView].
   void goBack() {
