@@ -26,7 +26,7 @@ mixin BusyServiceManagement {
     String? busyMessage,
     Duration minBusyDuration = kValuesMinBusyDuration,
     BusyType? busyType,
-    Duration timeoutDuration = kValuesTimeoutDuration,
+    Duration? timeoutDuration,
     VoidCallback? onTimeout,
   }) =>
       _busyService.setBusy(
@@ -35,7 +35,7 @@ mixin BusyServiceManagement {
         busyMessage: busyMessage,
         minBusyDuration: minBusyDuration,
         busyType: busyType,
-        timeoutDuration: minBusyDuration,
+        timeoutDuration: timeoutDuration,
         onTimeout: onTimeout,
       );
 

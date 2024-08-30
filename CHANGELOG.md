@@ -1,3 +1,7 @@
+## 0.0.12
+
+* **🐛️ Bugfix:** Fixed duration bugs.
+
 ## 0.0.11+2
 
 * **✨ New:** Changed default timeout duration to 10 seconds.
