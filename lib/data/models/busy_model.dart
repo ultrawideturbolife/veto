@@ -10,11 +10,13 @@ class BusyModel {
   /// [busyTitle] Optional title to display while busy.
   /// [busyMessage] Optional message to display while busy.
   /// [busyType] Specifies the type of busy indicator to display.
+  /// [payload] Extra payload to be used with the busy model.
   const BusyModel({
     required this.isBusy,
     required this.busyTitle,
     required this.busyMessage,
     required this.busyType,
+    required this.payload,
   });
 
   /// Indicates if the application or component is currently busy.
@@ -28,4 +30,7 @@ class BusyModel {
 
   /// Type of busy indicator to display.
   final BusyType busyType;
+
+  /// Extra payload to be used with the busy model.
+  final Map<String, dynamic> payload;
 }

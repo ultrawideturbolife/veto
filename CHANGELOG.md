@@ -1,3 +1,7 @@
+## 0.0.13
+
+* **✨ New:** Added `BusyService.payload` to allow for passing data to the busy overlay. 
+
 ## 0.0.12
 
 * **🐛️ Bugfix:** Fixed duration bugs.

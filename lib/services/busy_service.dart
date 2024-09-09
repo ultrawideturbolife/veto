@@ -50,6 +50,7 @@ class BusyService {
       busyType: _busyTypeDefault,
       busyTitle: null,
       busyMessage: null,
+      payload: <String, dynamic>{},
     ),
   );
 
@@ -78,6 +79,7 @@ class BusyService {
     BusyType? busyType,
     Duration? timeoutDuration,
     VoidCallback? onTimeout,
+    Map<String, dynamic> payload = const <String, dynamic>{},
   }) {
     if (_allowUpdateTimer == null) {
       WidgetsBinding.instance.addPostFrameCallback(
@@ -88,6 +90,7 @@ class BusyService {
           busyType: busyType ?? _busyTypeDefault,
           onTimeout: onTimeout ?? _onTimeoutDefault,
           timeoutDuration: timeoutDuration ?? _timeoutDurationDefault,
+          payload: payload,
         ),
       );
       if (isBusy) {
@@ -104,6 +107,7 @@ class BusyService {
                   busyTitle: busyTitle ?? _busyTitleDefault,
                   onTimeout: onTimeout ?? _onTimeoutDefault,
                   timeoutDuration: timeoutDuration ?? _timeoutDurationDefault,
+                  payload: payload,
                 ),
               );
               _mutex.lockAndRun(
@@ -142,6 +146,7 @@ class BusyService {
     required BusyType busyType,
     required Duration timeoutDuration,
     required VoidCallback? onTimeout,
+    required Map<String, dynamic> payload,
   }) {
     if (isBusy && onTimeout != null) {
       _timeoutTimer?.cancel();
@@ -160,6 +165,7 @@ class BusyService {
       busyTitle: isBusy ? busyTitle : null,
       busyMessage: isBusy ? busyMessage : null,
       busyType: busyType,
+      payload: payload,
     );
   }
 
