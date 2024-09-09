@@ -50,7 +50,7 @@ class BusyService {
       busyType: _busyTypeDefault,
       busyTitle: null,
       busyMessage: null,
-      payload: <String, dynamic>{},
+      payload: null,
     ),
   );
 
@@ -71,7 +71,7 @@ class BusyService {
   // 🪄 MUTATORS ------------------------------------------------------------------------------ \\
 
   /// Sets the busy state of the application.
-  void setBusy(
+  void setBusy<T>(
     bool isBusy, {
     Duration minBusyDuration = kValuesMinBusyDuration,
     String? busyMessage,
@@ -79,11 +79,11 @@ class BusyService {
     BusyType? busyType,
     Duration? timeoutDuration,
     VoidCallback? onTimeout,
-    Map<String, dynamic> payload = const <String, dynamic>{},
+    T? payload,
   }) {
     if (_allowUpdateTimer == null) {
       WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _setBusy(
+        (_) => _setBusy<T>(
           isBusy: isBusy,
           busyMessage: busyMessage ?? _busyMessageDefault,
           busyTitle: busyTitle ?? _busyTitleDefault,
@@ -100,7 +100,7 @@ class BusyService {
             if ((_isBusies - _isNotBusies) != 0) {
               final isReallyBusy = _isBusies > _isNotBusies;
               WidgetsBinding.instance.addPostFrameCallback(
-                (_) => _setBusy(
+                (_) => _setBusy<T>(
                   isBusy: isReallyBusy,
                   busyMessage: busyMessage,
                   busyType: busyType ?? _busyTypeDefault,
@@ -139,14 +139,14 @@ class BusyService {
   // 🏗️ HELPERS ------------------------------------------------------------------------------- \\
 
   /// Sets the busy state in the ValueNotifier
-  void _setBusy({
+  void _setBusy<T>({
     required bool isBusy,
     required String? busyMessage,
     required String? busyTitle,
     required BusyType busyType,
     required Duration timeoutDuration,
     required VoidCallback? onTimeout,
-    required Map<String, dynamic> payload,
+    required T? payload,
   }) {
     if (isBusy && onTimeout != null) {
       _timeoutTimer?.cancel();
@@ -160,7 +160,7 @@ class BusyService {
     } else {
       _timeoutTimer?.cancel();
     }
-    _isBusyNotifier.value = BusyModel(
+    _isBusyNotifier.value = BusyModel<T>(
       isBusy: isBusy,
       busyTitle: isBusy ? busyTitle : null,
       busyMessage: isBusy ? busyMessage : null,

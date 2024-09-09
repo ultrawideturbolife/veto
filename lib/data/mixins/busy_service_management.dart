@@ -20,7 +20,7 @@ mixin BusyServiceManagement {
   /// [busyMessage] Optional message for the busy state.
   /// [minBusyDuration] Minimum duration to remain in busy state. Default is [kValuesMinBusyDuration].
   /// [busyType] Optional busy type. Default is `null`.
-  void setBusy(
+  void setBusy<T>(
     bool isBusy, {
     String? busyTitle,
     String? busyMessage,
@@ -28,8 +28,9 @@ mixin BusyServiceManagement {
     BusyType? busyType,
     Duration? timeoutDuration,
     VoidCallback? onTimeout,
+    T? payload,
   }) =>
-      _busyService.setBusy(
+      _busyService.setBusy<T>(
         isBusy,
         busyTitle: busyTitle,
         busyMessage: busyMessage,
@@ -37,6 +38,7 @@ mixin BusyServiceManagement {
         busyType: busyType,
         timeoutDuration: timeoutDuration,
         onTimeout: onTimeout,
+        payload: payload,
       );
 
   /// Sets the busy state to idle.

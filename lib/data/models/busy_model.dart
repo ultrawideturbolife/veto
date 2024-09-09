@@ -3,14 +3,14 @@ import '../enums/busy_type.dart';
 /// A model to represent the busy state of an application or component.
 ///
 /// Includes busy state, optional title and message, and the type of busy indicator.
-class BusyModel {
+class BusyModel<T> {
   /// Creates an instance of [BusyModel].
   ///
   /// [isBusy] Indicates if the application or component is busy.
   /// [busyTitle] Optional title to display while busy.
   /// [busyMessage] Optional message to display while busy.
   /// [busyType] Specifies the type of busy indicator to display.
-  /// [payload] Extra payload to be used with the busy model.
+  /// [payload] Optional payload to be used with the busy model.
   const BusyModel({
     required this.isBusy,
     required this.busyTitle,
@@ -31,6 +31,9 @@ class BusyModel {
   /// Type of busy indicator to display.
   final BusyType busyType;
 
-  /// Extra payload to be used with the busy model.
-  final Map<String, dynamic> payload;
+  /// Optional payload to be used with the busy model.
+  final T? payload;
+
+  /// Getter + caster for the payload. Use with caution!
+  E payloadAsType<E>() => payload as E;
 }

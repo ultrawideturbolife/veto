@@ -1,3 +1,15 @@
+## 0.0.14+1
+
+* **🐛️ Bugfix:** Add missing generics.
+
+## 0.0.14
+
+* **⚠️ Breaking:** Change payload type to generic.
+
+## 0.0.13+1
+
+* **🐛️ Bugfix:** Fixed missing payload in BusyServiceManagement mixin.
+
 ## 0.0.13
 
 * **✨ New:** Added `BusyService.payload` to allow for passing data to the busy overlay. 
