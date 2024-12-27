@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:veto/data/constants/k_values.dart';
 import 'package:veto/services/busy_service.dart';
 import 'package:veto/data/models/busy_model.dart';
-import '../enums/busy_type.dart';
+import 'package:veto/data/enums/busy_type.dart';
 
 /// Mixin to manage the busy state using [BusyService].
 ///
@@ -20,7 +20,7 @@ mixin BusyServiceManagement {
   /// [busyMessage] Optional message for the busy state.
   /// [minBusyDuration] Minimum duration to remain in busy state. Default is [kValuesMinBusyDuration].
   /// [busyType] Optional busy type. Default is `null`.
-  void setBusy<T>(
+  void setBusy(
     bool isBusy, {
     String? busyTitle,
     String? busyMessage,
@@ -28,9 +28,9 @@ mixin BusyServiceManagement {
     BusyType? busyType,
     Duration? timeoutDuration,
     VoidCallback? onTimeout,
-    T? payload,
+    dynamic payload,
   }) =>
-      _busyService.setBusy<T>(
+      _busyService.setBusy(
         isBusy,
         busyTitle: busyTitle,
         busyMessage: busyMessage,

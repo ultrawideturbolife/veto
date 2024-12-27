@@ -71,7 +71,7 @@ class BusyService {
   // 🪄 MUTATORS ------------------------------------------------------------------------------ \\
 
   /// Sets the busy state of the application.
-  void setBusy<T>(
+  void setBusy(
     bool isBusy, {
     Duration minBusyDuration = kValuesMinBusyDuration,
     String? busyMessage,
@@ -79,11 +79,11 @@ class BusyService {
     BusyType? busyType,
     Duration? timeoutDuration,
     VoidCallback? onTimeout,
-    T? payload,
+    dynamic payload,
   }) {
     if (_allowUpdateTimer == null) {
       WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _setBusy<T>(
+        (_) => _setBusy(
           isBusy: isBusy,
           busyMessage: busyMessage ?? _busyMessageDefault,
           busyTitle: busyTitle ?? _busyTitleDefault,
@@ -100,7 +100,7 @@ class BusyService {
             if ((_isBusies - _isNotBusies) != 0) {
               final isReallyBusy = _isBusies > _isNotBusies;
               WidgetsBinding.instance.addPostFrameCallback(
-                (_) => _setBusy<T>(
+                (_) => _setBusy(
                   isBusy: isReallyBusy,
                   busyMessage: busyMessage,
                   busyType: busyType ?? _busyTypeDefault,
@@ -139,14 +139,14 @@ class BusyService {
   // 🏗️ HELPERS ------------------------------------------------------------------------------- \\
 
   /// Sets the busy state in the ValueNotifier
-  void _setBusy<T>({
+  void _setBusy({
     required bool isBusy,
     required String? busyMessage,
     required String? busyTitle,
     required BusyType busyType,
     required Duration timeoutDuration,
     required VoidCallback? onTimeout,
-    required T? payload,
+    required dynamic payload,
   }) {
     if (isBusy && onTimeout != null) {
       _timeoutTimer?.cancel();
@@ -160,7 +160,7 @@ class BusyService {
     } else {
       _timeoutTimer?.cancel();
     }
-    _isBusyNotifier.value = BusyModel<T>(
+    _isBusyNotifier.value = BusyModel(
       isBusy: isBusy,
       busyTitle: isBusy ? busyTitle : null,
       busyMessage: isBusy ? busyMessage : null,

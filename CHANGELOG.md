@@ -1,3 +1,7 @@
+## 0.0.15
+
+* **⚠️ Breaking:** Turned generic arguments of payload to dynamic.
+
 ## 0.0.14+1
 
 * **🐛️ Bugfix:** Add missing generics.
