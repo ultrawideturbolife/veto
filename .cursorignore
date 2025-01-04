@@ -1,0 +1,9 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+!how_we_do/
+!wiki/
+!feature_examples/
+!templates/
+!gpt_prompts/
+!requirements/
+!tickets/
+!logs/ 

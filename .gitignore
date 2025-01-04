@@ -30,3 +30,8 @@ migrate_working_dir/
 build/
 /.flutter-plugins-dependencies
 /.flutter-plugins
+
+# GPT related
+gpt_agent_todo.md
+
+# Synced documentation
