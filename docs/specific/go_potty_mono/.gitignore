@@ -1,0 +1,7 @@
+# Ignore GPT agent todo file
+gpt_agent_todo.md
+
+# IDE and system files
+.DS_Store
+.idea/
+*.iml 
